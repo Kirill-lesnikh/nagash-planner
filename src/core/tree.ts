@@ -1,4 +1,4 @@
-import type { Cluster, Supercluster, TreeData, TreeNode } from "./types";
+import type { Cluster, Supercluster, TreeData, TreeNode, Unit } from "./types";
 
 /** Precomputed lookups over the tree data. Built once per data file. */
 export interface TreeIndex {
@@ -20,6 +20,7 @@ export interface TreeIndex {
    * A gateway of tier k is itself in segment k.
    */
   segment: Map<string, number>;
+  units: Map<string, Unit>;
 }
 
 export function buildIndex(data: TreeData): TreeIndex {
@@ -65,5 +66,6 @@ export function buildIndex(data: TreeData): TreeIndex {
     gateways,
     thresholds,
     segment,
+    units: new Map(data.units.map((u) => [u.key, u])),
   };
 }

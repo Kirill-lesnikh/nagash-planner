@@ -36,6 +36,8 @@ const FULL_TABLES = [
   "initiative_set_categories",
 ];
 
+const FACTION = "wh3_dlc29_nag_host_of_nagash";
+
 const SCRIPTS = [
   "script/campaign/wh3_dlc29_nag_black_pyramid.lua",
   "script/campaign/main_warhammer/wh3_dlc29_nag_mortarchs.lua",
@@ -120,8 +122,48 @@ function extractDb(defs) {
   const scopes = read("campaign_effect_scopes");
   save("campaign_effect_scopes", scopes, scopes.rows.filter((r) => scopeKeys.has(r.key)));
 
+  extractUnits(read, save, out, effectKeys);
+
   db.close();
   return out;
+}
+
+// Which units each node effect applies to: the faction's roster, unit definitions, unit sets,
+// and the effect -> unit set / unit links the game uses to target bonuses.
+function extractUnits(read, save, out, effectKeys) {
+  const faction = read("factions").rows.find((r) => r.key === FACTION);
+  const perms = read("units_to_groupings_military_permissions");
+  save("units_to_groupings_military_permissions", perms, perms.rows.filter((r) => r.military_group === faction.military_group));
+  const roster = new Set(out.units_to_groupings_military_permissions.map((r) => r.unit));
+
+  const mainUnits = read("main_units");
+  save("main_units", mainUnits, mainUnits.rows.filter((r) => roster.has(r.unit)));
+  const landKeys = new Set(out.main_units.map((r) => r.land_unit));
+  const landUnits = read("land_units");
+  save("land_units", landUnits, landUnits.rows.filter((r) => landKeys.has(r.key)));
+
+  const byEffect = (t) => {
+    const table = read(t);
+    save(t, table, table.rows.filter((r) => effectKeys.has(r.effect)));
+    return out[t];
+  };
+  const unitSets = new Set(byEffect("effect_bonus_value_ids_unit_sets").map((r) => r.unit_set));
+  byEffect("effect_bonus_value_unit_record_junctions");
+  for (const [junction, link, field] of [
+    ["effect_bonus_value_unit_set_unit_ability_junctions", "unit_set_unit_ability_junctions", "unit_set_ability"],
+    ["effect_bonus_value_unit_set_unit_attribute_junctions", "unit_set_unit_attribute_junctions", "unit_set_attribute"],
+    ["effect_bonus_value_unit_set_special_ability_phase_junctions", "unit_set_special_ability_phase_junctions", "unit_set_special_ability_phase_junction"],
+  ]) {
+    const keys = new Set(byEffect(junction).map((r) => r[field]));
+    const table = read(link);
+    save(link, table, table.rows.filter((r) => keys.has(r.key)));
+    for (const r of out[link]) unitSets.add(r.unit_set);
+  }
+
+  const sets = read("unit_sets");
+  save("unit_sets", sets, sets.rows.filter((r) => unitSets.has(r.key)));
+  const setUnits = read("unit_set_to_unit_junctions");
+  save("unit_set_to_unit_junctions", setUnits, setUnits.rows.filter((r) => unitSets.has(r.unit_set)));
 }
 
 // Collects every loc entry the tree needs, then follows {{tr:key}} references so the text can be fully resolved offline.
@@ -145,6 +187,7 @@ function extractLoc(db) {
     wanted.add(`ui_graph_node_superclusters_localised_description_${r.key}`);
   }
   for (const r of db.effects) wanted.add(`effects_description_${r.effect}`);
+  for (const r of db.main_units) wanted.add(`land_units_onscreen_name_${r.land_unit}`);
   for (const r of db.campaign_effect_scopes) wanted.add(`campaign_effect_scopes_localised_text_${r.key}`);
   // UI strings of the panel itself (titles, gateway tooltips, etc.)
   for (const k of all.keys()) if (/black_pyramid|mystic_sigil|nag_sigil/i.test(k)) wanted.add(k);
@@ -175,7 +218,8 @@ function extractScripts() {
 
 function extractUi(db) {
   const effectIcons = new Set(db.effects.flatMap((r) => [r.icon, r.icon_negative]).map((i) => i.toLowerCase()));
-  let layouts = 0, skins = 0, icons = 0;
+  const unitIcons = new Set(db.main_units.flatMap((r) => [r.unit, r.land_unit]).map((k) => `${k.toLowerCase()}.png`));
+  let layouts = 0, skins = 0, icons = 0, units = 0;
   for (const name of UI_PACKS) {
     const pk = new Pack(path.join(GAME_DIR, "data", name));
     for (const f of pk.list()) {
@@ -185,12 +229,16 @@ function extractUi(db) {
       else if (UI_SKIN_PATTERN.test(n)) { dst = path.join("ui", "skin", n.replace(UI_SKIN_PATTERN, "")); skins++; }
       else if (/^ui\/campaign ui\/effect_bundles\//i.test(n) && effectIcons.has(path.basename(n).toLowerCase())) {
         dst = path.join("ui", "effect_icons", path.basename(n).toLowerCase()); icons++;
+      } else if (/^ui\/units\/(icons|minspec_portholes)\//i.test(n) && unitIcons.has(path.basename(n).toLowerCase())) {
+        // Card icons exist only for newer units; minspec_portholes are the game's static fallback portraits.
+        const folder = /\/icons\//i.test(n) ? "unit_icons" : "unit_portholes";
+        dst = path.join("ui", folder, path.basename(n).toLowerCase()); units++;
       }
       if (dst) writeFile(path.join(EXTRACTED, dst), pk.read(n));
     }
     pk.close();
   }
-  console.log(`  layouts: ${layouts}, skin images: ${skins}, effect icons: ${icons} (of ${effectIcons.size} referenced)`);
+  console.log(`  layouts: ${layouts}, skin images: ${skins}, effect icons: ${icons} (of ${effectIcons.size} referenced), unit icons: ${units}`);
 }
 
 function steamBuild() {

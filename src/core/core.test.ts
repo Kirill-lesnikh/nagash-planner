@@ -3,7 +3,7 @@ import path from "node:path";
 import { describe, expect, it } from "vitest";
 import { buildIndex } from "./tree";
 import { activeSet, allocate, closedGates, gatewayStatus, lockReason, normalize, pathTo, reachable, refund, refundSet } from "./rules";
-import { renderTemplate, summarize } from "./summary";
+import { renderTemplate, summarize, summarizeByUnit } from "./summary";
 import { buildSearch } from "./search";
 import { decodeBuild, encodeBuild } from "./encoding";
 import type { TreeData } from "./types";
@@ -144,6 +144,60 @@ describe("summary", () => {
     const active = activeSet(index, allocate(index, allocate(index, fillSegment0(10), GATE_1A), ARCHERS_3));
     const missiles = summarize(index, active).find((s) => s.name === "Missiles")!;
     expect(missiles.lines.some((l) => l.text.includes("flaming attacks"))).toBe(true);
+  });
+});
+
+describe("bonuses per unit", () => {
+  // Gateway I + the whole archer cluster, then everything else reachable in segments 0-1 for a broad build.
+  const archers = data.nodes.filter((n) => n.cluster === "black_pyramid_archers").map((n) => n.key);
+  let build = allocate(index, fillSegment0(10), GATE_1A);
+  for (const k of archers) build = allocate(index, build, k);
+
+  it("gives every targeted unit its own summed bonuses and merges identical units", () => {
+    const { groups } = summarizeByUnit(index, activeSet(index, build));
+    expect(groups.length).toBeGreaterThan(1);
+    const seen = new Set<string>();
+    for (const g of groups) {
+      expect(g.units.length).toBeGreaterThan(0);
+      expect(g.lines.length).toBeGreaterThan(0);
+      for (const u of g.units) {
+        expect(seen.has(u.key)).toBe(false); // each unit appears in exactly one group
+        seen.add(u.key);
+      }
+      for (const l of g.lines) expect(l.text).not.toMatch(/%\+?n/);
+    }
+    // groups have distinct bonus lists
+    const signatures = groups.map((g) => g.lines.map((l) => l.text + l.scope).join("|"));
+    expect(new Set(signatures).size).toBe(groups.length);
+  });
+
+  it("splits a group when one bonus applies to only some of its units", () => {
+    const active = activeSet(index, build);
+    const groupOf = (unit: string, a: Set<string>) => summarizeByUnit(index, a).groups.find((g) => g.units.some((u) => u.key === unit))!;
+    // Find a group with 2+ units and an unallocated reachable node whose effects target only some of them.
+    for (const g of summarizeByUnit(index, active).groups.filter((g) => g.units.length > 1)) {
+      const keys = g.units.map((u) => u.key);
+      const candidate = data.nodes.find(
+        (n) =>
+          !active.has(n.key) &&
+          pathTo(index, active, n.key).length === 1 &&
+          n.effects.some((e) => {
+            const t = data.effectTargets[e.key] ?? [];
+            return keys.some((k) => t.includes(k)) && keys.some((k) => !t.includes(k));
+          }),
+      );
+      if (!candidate) continue;
+      const after = activeSet(index, [...build, candidate.key]);
+      const first = groupOf(keys[0], after).units.map((u) => u.key);
+      expect(keys.every((k) => first.includes(k))).toBe(false);
+      return;
+    }
+    throw new Error("no splittable group found");
+  });
+
+  it("keeps non-unit effects in the general sections", () => {
+    const { general } = summarizeByUnit(index, activeSet(index, build));
+    for (const s of general) for (const l of s.lines) expect(data.effectTargets[l.id.split("|")[0]]).toBeUndefined();
   });
 });
 

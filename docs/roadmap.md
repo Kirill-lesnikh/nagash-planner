@@ -25,6 +25,10 @@
 - [x] Combined bonuses grouped by section (supercluster). Effects are summed; hovering a line highlights its source nodes.
 - [x] URL share, localStorage autosave, undo/redo, reset.
 
+## M3.5: Bonuses per unit ✅
+- [x] Extract the roster, unit sets and effect→unit links; resolve them in `build-tree`, including scripted Grave Call unlocks.
+- [x] "By unit" summary: per-unit sums, with units merged when their bonuses are identical.
+
 ## M4: Polish and ship
 - [ ] Touch pinch-zoom; a mobile layout check.
 - [ ] Convert the images to webp if size matters.

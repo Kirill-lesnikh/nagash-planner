@@ -44,6 +44,14 @@ export interface Gateway {
   threshold: number;
 }
 
+export interface Unit {
+  key: string;
+  name: string;
+  caste: string;
+  culture: string;
+  icon?: string;
+}
+
 export interface TreeData {
   schemaVersion: 1;
   gameVersion: string;
@@ -55,4 +63,10 @@ export interface TreeData {
   nodes: TreeNode[];
   edges: [string, string][];
   effectTemplates: Record<string, string>;
+  /** Roster units that at least one node effect applies to. */
+  units: Unit[];
+  /** Effect key -> unit keys it applies to (only for unit-targeted effects). */
+  effectTargets: Record<string, string[]>;
+  /** Effect key -> text template without the "for <units> units" part, for per-unit display. */
+  unitEffectTemplates: Record<string, string>;
 }

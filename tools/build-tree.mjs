@@ -63,7 +63,7 @@ function copyImage(gamePath, subdir) {
   const base = gamePath.replaceAll("\\", "/").split("/").pop().toLowerCase();
   const rel = `assets/${subdir}/${base}`;
   if (!copied.has(rel)) {
-    const candidates = [path.join(SRC, "ui", "skin", "icons", base), path.join(SRC, "ui", "skin", base), path.join(SRC, "ui", "effect_icons", base)];
+    const candidates = ["skin/icons", "skin", "effect_icons", "unit_icons", "unit_portholes"].map((d) => path.join(SRC, "ui", d, base));
     const src = candidates.find((c) => fs.existsSync(c));
     if (!src) {
       console.warn(`  missing image ${gamePath}`);
@@ -124,7 +124,7 @@ const nodes = graphNodes.map((g) => {
   const effects = [];
   for (const e of effectsByList[ini.effects] ?? []) {
     const template = text(`effects_description_${e.effect}`);
-    if (!template || template.includes("[STATUS: HIDDEN]")) {
+    if (!template || /\[STATUS: HIDDEN\]|\[HIDDEN/.test(template)) {
       hiddenEffects++;
       continue;
     }
@@ -167,6 +167,102 @@ for (const l of table("ui_graph_node_links")) {
   edges.push([a, b]);
 }
 
+// ---------- units each effect applies to ----------
+
+const mainUnits = new Map(table("main_units").map((r) => [r.unit, r]));
+const landUnits = new Map(table("land_units").map((r) => [r.key, r]));
+const unitSetRows = {};
+for (const r of table("unit_set_to_unit_junctions")) (unitSetRows[r.unit_set] ??= []).push(r);
+
+// A unit is in a set if it matches an include row and no exclude row; a row matches when every field it sets matches.
+function rowMatches(row, unit) {
+  const m = mainUnits.get(unit);
+  const l = landUnits.get(m.land_unit) ?? {};
+  return (
+    (!row.unit_record || row.unit_record === unit) &&
+    (!row.unit_caste || row.unit_caste === m.caste) &&
+    (!row.unit_category || row.unit_category === l.category) &&
+    (!row.unit_class || row.unit_class === l.class)
+  );
+}
+const setCache = new Map();
+function resolveSet(set) {
+  if (!setCache.has(set)) {
+    const rows = unitSetRows[set] ?? [];
+    setCache.set(
+      set,
+      [...mainUnits.keys()].filter((u) => rows.some((r) => !r.exclude && rowMatches(r, u)) && !rows.some((r) => r.exclude && rowMatches(r, u))),
+    );
+  }
+  return setCache.get(set);
+}
+
+const effectUnits = new Map();
+const target = (effect, units) => {
+  const set = effectUnits.get(effect) ?? new Set();
+  for (const u of units) if (mainUnits.has(u)) set.add(u);
+  effectUnits.set(effect, set);
+};
+for (const r of table("effect_bonus_value_ids_unit_sets")) target(r.effect, resolveSet(r.unit_set));
+for (const r of table("effect_bonus_value_unit_record_junctions")) target(r.effect, [r.unit_record_key]);
+for (const [junction, link, field] of [
+  ["effect_bonus_value_unit_set_unit_ability_junctions", "unit_set_unit_ability_junctions", "unit_set_ability"],
+  ["effect_bonus_value_unit_set_unit_attribute_junctions", "unit_set_unit_attribute_junctions", "unit_set_attribute"],
+  ["effect_bonus_value_unit_set_special_ability_phase_junctions", "unit_set_special_ability_phase_junctions", "unit_set_special_ability_phase_junction"],
+]) {
+  const sets = new Map(table(link).map((r) => [r.key, r.unit_set]));
+  for (const r of table(junction)) target(r.effect, resolveSet(sets.get(r[field])));
+}
+
+// Grave Call unlocks are scripted: the pyramid script maps each node to the units it unlocks.
+const GRAVE_CALL_TEXT = "Grave Call recruitment unlocked";
+const gravecallEffects = new Set();
+{
+  const lua = fs.readFileSync(path.join(SRC, "script", "wh3_dlc29_nag_black_pyramid.lua"), "utf8");
+  const block = lua.slice(lua.indexOf("gravecall = {"), lua.indexOf("rituals = {"));
+  for (const m of block.matchAll(/\["(wh3_dlc29_black_pyramid_[^"]+)"\]\s*=\s*\{([^}]*)\}/g)) {
+    const units = [...m[2].matchAll(/"([^"]+)"/g)].map((u) => u[1]);
+    for (const e of effectsByList[initiatives[m[1]]?.effects] ?? []) {
+      if (!e.effect.includes("gravecall_unlock")) continue;
+      target(e.effect, units);
+      gravecallEffects.add(e.effect);
+    }
+  }
+}
+
+// Per-unit text: drop the "for <unit list> units" part so the same bonus reads the same on every unit.
+const unitEffectTemplates = {};
+const effectTargets = {};
+for (const [effect, units] of effectUnits) {
+  if (!units.size || !effectTemplates[effect]) continue;
+  effectTargets[effect] = [...units].sort();
+  unitEffectTemplates[effect] = gravecallEffects.has(effect)
+    ? GRAVE_CALL_TEXT
+    : effectTemplates[effect].replace(/ for .+? units?\b/, "").trim();
+}
+
+const CULTURE = [
+  [/_tmb_/, "Tomb Kings"],
+  [/_vmp_/, "Vampire Counts"],
+  [/_cst_/, "Vampire Coast"],
+];
+const targetedUnits = new Set(Object.values(effectTargets).flat());
+const units = [...targetedUnits]
+  .map((key) => {
+    const m = mainUnits.get(key);
+    const iconSrc = [m.unit, m.land_unit].map((k) => k.toLowerCase() + ".png").find((f) =>
+      ["unit_icons", "unit_portholes"].some((d) => fs.existsSync(path.join(SRC, "ui", d, f))),
+    );
+    return {
+      key,
+      name: text(`land_units_onscreen_name_${m.land_unit}`) || key,
+      caste: m.caste,
+      culture: CULTURE.find(([re]) => re.test(key))?.[1] ?? "",
+      ...(iconSrc && { icon: copyImage(iconSrc, "units") }),
+    };
+  })
+  .sort((a, b) => a.key.localeCompare(b.key));
+
 const gateways = table("ui_graph_node_unlock_thresholds")
   .map((r) => ({ node: keyOf(r.ui_graph_node), threshold: r.unlock_threshold }))
   .sort((a, b) => a.threshold - b.threshold || a.node.localeCompare(b.node));
@@ -182,6 +278,9 @@ const tree = {
   nodes: nodes.sort((a, b) => a.key.localeCompare(b.key)),
   edges,
   effectTemplates: Object.fromEntries(Object.entries(effectTemplates).sort(([a], [b]) => a.localeCompare(b))),
+  units,
+  effectTargets: Object.fromEntries(Object.entries(effectTargets).sort(([a], [b]) => a.localeCompare(b))),
+  unitEffectTemplates: Object.fromEntries(Object.entries(unitEffectTemplates).sort(([a], [b]) => a.localeCompare(b))),
 };
 
 // ---------- validation ----------
@@ -232,3 +331,6 @@ console.log(`  edges: ${edges.length}, clusters: ${clusters.length}, supercluste
 console.log(`  gateways:`, gateways.map((g) => g.threshold).join(", "));
 console.log(`  effects: ${tree.nodes.reduce((s, n) => s + n.effects.length, 0)} shown, ${hiddenEffects} hidden`);
 console.log(`  images copied: ${copied.size}`);
+const leftover = Object.entries(unitEffectTemplates).filter(([, t]) => / units?\b/.test(t));
+console.log(`  unit-targeted effects: ${Object.keys(effectTargets).length} over ${units.length} units (${gravecallEffects.size} Grave Call unlocks)`);
+if (leftover.length) console.log(`  per-unit texts still naming units: ${leftover.length}`, leftover.slice(0, 5).map(([, t]) => t));

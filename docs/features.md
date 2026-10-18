@@ -52,7 +52,8 @@ Priorities:
 |---|---|
 | Aggregated effects | A side panel sums every allocated effect, grouped by category: Nagash, Lords/Heroes, per roster, economy, campaign. Numeric effects with the same key are added up (e.g. "Upkeep −10%" + "Upkeep −10%" → "Upkeep −20%"). |
 | Unlocks list | Units unlocked for recruitment or Grave Call, abilities gained, spells. |
-| Click to locate | Clicking a summary line highlights the nodes that contribute to it. |
+| Click to locate | Hovering a summary line highlights the nodes that contribute to it. |
+| By unit | A switch between **By section** and **By unit**. **By unit** shows: <ul><li>each roster unit's bonuses, summed per unit (the same bonus from several nodes adds up, and the unit list is stripped from the text);</li><li>units with **exactly identical** bonus lists merged into one group with their unit cards; one differing bonus or value splits them;</li><li>Grave Call unlocks first in each group;</li><li>effects that aren't unit-specific (faction, characters, campaign) listed afterwards under "Not unit-specific".</li></ul>The choice is remembered. |
 
 ## 5. Sharing and persistence (P0)
 

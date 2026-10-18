@@ -42,6 +42,7 @@ Requirements:
 | Panel layout | `ui3.pack` | `ui/campaign ui/dlc29_nag_black_pyramid.twui.xml` (+ side panel, topbar, tooltip) |
 | Node icons, frames, background | `ui2.pack` | `ui/skins/default/dlc29_nag_black_pyramid/` (`icons/` holds the cluster icons, each with an `_active` variant) |
 | Effect icons | `ui.pack` | `ui/campaign ui/effect_bundles/*.png` |
+| Unit icons | `ui.pack` | `ui/units/icons/*.png`, falling back to `ui/units/minspec_portholes/*.png` |
 
 ### DB tables and how they join
 
@@ -59,6 +60,33 @@ ui_graph_nodes (key, graph, x_pos, y_pos, type ∈ gate|key|major|minor, cluster
                       ├─ effects (effect, icon, priority, is_positive_value_good)
                       └─ campaign_effect_scopes (key)
 ```
+
+### Which units an effect applies to
+
+```
+factions (wh3_dlc29_nag_host_of_nagash).military_group
+  └─ units_to_groupings_military_permissions (unit, military_group)        → the roster (150 units)
+       └─ main_units (unit, caste, land_unit) → land_units (key, category, class)
+
+effect ─┬─ effect_bonus_value_ids_unit_sets (effect, unit_set)                       → unit set
+        ├─ effect_bonus_value_unit_record_junctions (effect, unit_record_key)        → one unit
+        ├─ effect_bonus_value_unit_set_unit_ability_junctions (unit_set_ability)     → unit_set_unit_ability_junctions.unit_set
+        ├─ effect_bonus_value_unit_set_unit_attribute_junctions (unit_set_attribute) → unit_set_unit_attribute_junctions.unit_set
+        └─ effect_bonus_value_unit_set_special_ability_phase_junctions (…)           → unit_set_special_ability_phase_junctions.unit_set
+unit set → unit_set_to_unit_junctions (unit_set, unit_record, unit_caste, unit_category, unit_class, exclude)
+```
+
+**Set membership:**
+
+- A roster unit is in a set if it matches at least one include row and no exclude row.
+- A row matches when every field it fills in (unit, caste, category, class) equals the unit's value.
+- Some sets only apply from a given rank (`unit_sets.use_unit_exp_level_range`). The effect text already says "(Rank 7 and above)".
+
+**Grave Call unlocks:** these are scripted. `build-tree` reads the `gravecall.initiatives` table in `wh3_dlc29_nag_black_pyramid.lua` (node → unit keys) and assigns those units to the node's `*gravecall_unlock*` effect.
+
+**What stays general:** effects aimed at abilities, characters, the faction or the campaign. Lore spell cooldowns, recruitment capacity, upkeep and similar stay in the general sections.
+
+**Unit icons:** `ui/units/icons/<unit>.png` when it exists, otherwise the static fallback `ui/units/minspec_portholes/<unit>.png`. Lords and heroes have neither.
 
 ### Localisation keys
 
@@ -93,6 +121,10 @@ interface TreeData {
   gateways: { node: string; threshold: number }[];
   nodes: TreeNode[];              // sorted by key
   edges: [string, string][];      // undirected, deduplicated
+  effectTemplates: Record<string, string>;      // effect key -> text with %+n / %n, for summing values
+  units: { key: string; name: string; caste: string; culture: string; icon?: string }[];  // roster units some effect targets
+  effectTargets: Record<string, string[]>;      // effect key -> unit keys (unit-targeted effects only)
+  unitEffectTemplates: Record<string, string>;  // effect key -> text without "for <units> units" (per-unit display)
 }
 
 interface TreeNode {

@@ -231,6 +231,11 @@ ul.effects img {
   margin-top: 1px;
 }
 
+ul.effects .no-icon {
+  width: 18px;
+  flex: none;
+}
+
 .scope {
   color: var(--muted);
   font-size: 12px;
@@ -488,4 +493,100 @@ ul.results .dot::before {
   .hint {
     display: none;
   }
+}
+
+/* ---------- summary modes ---------- */
+
+.summary-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.summary-head h2 {
+  margin: 0;
+}
+
+.mode-switch {
+  display: flex;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.mode-switch button {
+  border: none;
+  border-radius: 0;
+  padding: 3px 10px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.mode-switch button.on {
+  background: #26302f;
+  color: var(--teal);
+}
+
+.unit-group {
+  margin-bottom: 10px;
+  padding: 8px;
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+
+.unit-group ul.effects {
+  margin: 6px 0 0;
+}
+
+.unit-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.unit-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  max-width: 100%;
+  padding: 2px 6px 2px 2px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  font-size: 12px;
+}
+
+.unit-chip img {
+  width: 22px;
+  height: 22px;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 2px;
+}
+
+.unit-noicon {
+  width: 22px;
+  height: 22px;
+  border-radius: 2px;
+  background: #222a2e;
+}
+
+.unit-name {
+  font-weight: 600;
+}
+
+.unit-culture {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.general-title {
+  margin: 14px 0 6px;
+  font-family: Georgia, serif;
+  font-weight: normal;
+  font-size: 15px;
+  color: var(--gold);
 }
