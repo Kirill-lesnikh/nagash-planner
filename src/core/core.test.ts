@@ -4,7 +4,8 @@ import { describe, expect, it } from "vitest";
 import { buildIndex } from "./tree";
 import { activeSet, allocate, closedGates, gatewayStatus, lockReason, normalize, pathTo, reachable, refund, refundSet } from "./rules";
 import { renderTemplate, summarize, summarizeByUnit } from "./summary";
-import { buildSearch } from "./search";
+import { buildSearch, termScore } from "./search";
+import { searchUnits, unitBonuses } from "./units";
 import { decodeBuild, encodeBuild } from "./encoding";
 import type { TreeData } from "./types";
 
@@ -182,7 +183,7 @@ describe("bonuses per unit", () => {
           !active.has(n.key) &&
           pathTo(index, active, n.key).length === 1 &&
           n.effects.some((e) => {
-            const t = data.effectTargets[e.key] ?? [];
+            const t = (e.target && data.effectTargets[e.target]) || [];
             return keys.some((k) => t.includes(k)) && keys.some((k) => !t.includes(k));
           }),
       );
@@ -195,18 +196,128 @@ describe("bonuses per unit", () => {
     throw new Error("no splittable group found");
   });
 
+  it("lists army-level bonuses under their condition without splitting groups", () => {
+    // Nodes whose unit effects are all army-conditional and reach only some units
+    // (Nagash's-army bonuses reach every unit and go to "All units" instead; tested below).
+    const candidates = [
+      "wh3_dlc29_black_pyramid_tmb_I_5", // Dread Sentinels: Upkeep -10% (armies led by a Tomb Kings Lord or Nagash)
+      "wh3_dlc29_black_pyramid_vmp_I_5",
+      "wh3_dlc29_black_pyramid_cst_I_5",
+    ];
+    // The summary doesn't require a legal build, so add the node directly (it may sit behind a later gateway).
+    const target = candidates[0];
+    const withNode = [...build, target];
+    const without = build;
+    const groupsOf = (alloc: string[]) =>
+      summarizeByUnit(index, activeSet(index, alloc))
+        .groups.filter((g) => g.lines.length)
+        .map((g) => g.units.map((u) => u.key).join())
+        .sort();
+    expect(groupsOf(withNode)).toEqual(groupsOf(without));
+
+    const condition = data.nodes.find((n) => n.key === target)!.effects.find((e) => e.condition && e.target)!.condition!;
+    const blocks = summarizeByUnit(index, activeSet(index, withNode)).groups.flatMap((g) => g.conditional);
+    const block = blocks.find((b) => b.condition === condition)!;
+    expect(block).toBeDefined();
+    expect(block.lines.some((l) => l.text.startsWith("Upkeep: -10%"))).toBe(true);
+    expect(block.lines.every((l) => !l.scope)).toBe(true); // the condition is the heading, not repeated per line
+  });
+
+  it("shows bonuses every unit gets once, under All units", () => {
+    // Nagash's-army upkeep applies to every unit: it belongs in "All units", not in each group.
+    const alloc = [...build, "wh3_dlc29_black_pyramid_nagash_early_2"];
+    const { everyone, groups } = summarizeByUnit(index, activeSet(index, alloc));
+    const block = everyone?.conditional.find((c) => c.condition === "Nagash's army");
+    expect(block?.lines.some((l) => l.text === "Upkeep: -10%")).toBe(true);
+    for (const g of groups)
+      for (const c of g.conditional) if (c.condition === "Nagash's army") expect(c.lines.some((l) => l.text === "Upkeep: -10%" && !l.units)).toBe(false);
+  });
+
   it("keeps non-unit effects in the general sections", () => {
     const { general } = summarizeByUnit(index, activeSet(index, build));
-    for (const s of general) for (const l of s.lines) expect(data.effectTargets[l.id.split("|")[0]]).toBeUndefined();
+    const targeted = new Set(data.nodes.flatMap((n) => n.effects.filter((e) => e.target).map((e) => `${e.key}|${e.scope ?? ""}`)));
+    for (const s of general) for (const l of s.lines) expect(targeted.has(l.id)).toBe(false);
   });
 });
 
 describe("search", () => {
   const search = buildSearch(index);
-  it("finds nodes by name, unit name and multiple words", () => {
-    expect(search("sun-scorched")).toContain(ARCHERS_3);
-    expect(search("ushabti flaming")).toContain(ARCHERS_3);
+  const fields = (k: string) => [index.byKey.get(k)!.name, ...index.byKey.get(k)!.effects.map((e) => e.text)].map((f) => f.toLowerCase());
+
+  it("matches each word as an unbroken piece, best matches first", () => {
+    expect(termScore("vla", "vlad")).toBeGreaterThan(-1);
+    expect(termScore("vla", "somevlathing")).toBeGreaterThan(-1); // mid-word is fine
+    expect(termScore("vla", "somev djdjdjdj lafjfjf")).toBe(-1); // pieces split by spaces don't count
+    expect(termScore("vla", "vxlxa")).toBe(-1); // skipped letters don't count
+    expect(termScore("vlad", "vlad von")).toBeGreaterThan(termScore("vla", "somevlathing")); // whole word ranks first
+    expect(search("sun-scorched")[0]).toBe(ARCHERS_3);
+    expect(search("scorch")).toContain(ARCHERS_3);
+    expect(search("snscrchd")).toEqual([]);
+    // the top result for a word contains it verbatim
+    expect(fields(search("ushabti")[0]).some((f) => f.includes("ushabti"))).toBe(true);
     expect(search("")).toEqual([]);
+  });
+
+  it("matches within the name or a single effect line, never across them", () => {
+    expect(search("ushabti flaming")).toContain(ARCHERS_3); // both words in one effect line
+    expect(search("flaming ushabti")).toContain(ARCHERS_3); // terms in any order
+    expect(search("sun-scorched")).toContain(ARCHERS_3); // name only (the effect lines have no hyphen)
+    expect(search("flaming")).toContain(ARCHERS_3); // effect only
+    expect(search("sun-scorched flaming")).not.toContain(ARCHERS_3); // name + effect combined doesn't count
+    // Two of its effects: "Enables flaming attacks for …" and "Missile strength: +5% for …".
+    expect(search("flaming")).toContain(ARCHERS_3);
+    expect(search("missile strength")).toContain(ARCHERS_3);
+    expect(search("flaming strength")).not.toContain(ARCHERS_3); // one term per effect doesn't count
+    expect(search("flaming missile")).not.toContain(ARCHERS_3);
+  });
+
+  it("finds Vlad's healing cap through the effect's scope, and nothing scattered", () => {
+    const hits = search("heal cap vlad");
+    expect(hits.length).toBeGreaterThan(0);
+    for (const k of hits) {
+      const lines = index.byKey.get(k)!.effects.map((e) => `${e.text} ${e.scope ?? ""}`.toLowerCase());
+      expect(lines.some((l) => l.includes("healing cap") && l.includes("vlad"))).toBe(true);
+    }
+  });
+
+  it("does not match gateways for 'he cap'", () => {
+    const hits = search("he cap");
+    expect(hits.length).toBeGreaterThan(0);
+    for (const k of hits) expect(index.byKey.get(k)!.tier).not.toBe("gateway");
+  });
+
+  it("leaves out Pathways to Eternity connectors", () => {
+    for (const q of ["pathways to eternity", "nagash", "barrier"])
+      for (const k of search(q)) expect(index.byKey.get(k)!.tier).not.toBe("connector");
+  });
+});
+
+describe("unit lookup", () => {
+  it("lists every Sigil whose effects reach a unit, unit-specific ones first", () => {
+    const krell = unitBonuses(index, "wh3_dlc29_vmp_cha_krell");
+    expect(krell.length).toBeGreaterThan(0);
+    // Krell's own Sigils (scope "(Krell)") are included and come before all-unit bonuses
+    expect(krell.some((b) => b.lines.some((l) => l.scope === "(Krell)"))).toBe(true);
+    const firstShared = krell.findIndex((b) => b.allUnits);
+    if (firstShared >= 0) expect(krell.slice(firstShared).every((b) => b.allUnits)).toBe(true);
+    // every listed Sigil really targets Krell
+    for (const b of krell) expect(b.node.effects.some((e) => e.target && data.effectTargets[e.target].includes("wh3_dlc29_vmp_cha_krell"))).toBe(true);
+    // and no Sigil targeting Krell is missed
+    const expected = data.nodes.filter((n) => n.effects.some((e) => e.target && data.effectTargets[e.target].includes("wh3_dlc29_vmp_cha_krell")));
+    expect(krell.length).toBe(expected.length);
+  });
+
+  it("words bonuses for the unit and includes Grave Call unlocks", () => {
+    const horseArchers = unitBonuses(index, "wh2_dlc09_tmb_cav_skeleton_horsemen_archers_0");
+    const lines = horseArchers.flatMap((b) => b.lines.map((l) => l.text));
+    expect(lines).toContain("Grave Call recruitment unlocked");
+    expect(lines.some((l) => /^Speed: \+\d+%$/.test(l))).toBe(true);
+  });
+
+  it("searches units by unbroken name pieces", () => {
+    expect(searchUnits(index, "krel").map((u) => u.key)).toContain("wh3_dlc29_vmp_cha_krell");
+    expect(searchUnits(index, "grave guard").every((u) => /grave guard/i.test(u.name))).toBe(true);
+    expect(searchUnits(index, "").length).toBe(index.units.size);
   });
 });
 

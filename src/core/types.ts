@@ -7,6 +7,10 @@ export interface Effect {
   text: string;
   value: number;
   scope?: string;
+  /** Army-level condition, e.g. "Nagash's army" or "armies led by a Tomb Kings Lord or Nagash". */
+  condition?: string;
+  /** Key into TreeData.effectTargets when the effect applies to specific units (after scope narrowing). */
+  target?: string;
   icon?: string;
 }
 
@@ -65,7 +69,7 @@ export interface TreeData {
   effectTemplates: Record<string, string>;
   /** Roster units that at least one node effect applies to. */
   units: Unit[];
-  /** Effect key -> unit keys it applies to (only for unit-targeted effects). */
+  /** Target key (effect key, or "effect@scope" when a character scope narrows it) -> unit keys. */
   effectTargets: Record<string, string[]>;
   /** Effect key -> text template without the "for <units> units" part, for per-unit display. */
   unitEffectTemplates: Record<string, string>;

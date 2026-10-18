@@ -1,63 +1,97 @@
 # Architecture
 
-> Status: **proposed**. Nothing is built yet. Change this file when decisions change.
+> Status: **built**. This describes the code as it is. Update it when the code changes.
 
 ## Stack
 
-| Concern | Choice | Why |
+| Concern | Choice | Notes |
 |---|---|---|
-| Language | TypeScript (strict) | Typed tree data and graph logic. |
-| Build | Vite | Fast dev server, static output. |
-| UI | React 18 | Panels, search and summary are standard UI work. |
-| Tree rendering | **SVG** in one `<svg>` with a transformed `<g>` | About 600 nodes and 700 edges is fine for SVG. It gives hit-testing, CSS states and crisp icons for free. Move to Canvas/PixiJS only if profiling shows a need. |
-| Pan/zoom | `d3-zoom` (only this d3 module) | Mature wheel, pinch and drag handling. |
-| State | Zustand | Small, with no boilerplate. Undo/redo through a history middleware. |
-| Tests | Vitest | Unit tests for the core logic (pathing, encoding, validation). |
-| Data tools | Plain Node ESM scripts in `tools/` (no dependencies; Node ≥ 23.8 for zstd) | **Built.** See [data-model.md](data-model.md#pipeline). |
-| Hosting | GitHub Pages (static) | Free; there is no backend. |
+| Language | TypeScript (strict) | `tsc` runs as part of `npm run build`. |
+| Build / dev server | Vite 6 | `base: "./"`; bundles go to `dist/static/` (`public/assets/` holds the game art). |
+| UI | React 18, no UI library | Plain components and CSS in `src/styles.css`. |
+| Tree rendering | One SVG, with a `<g transform>` for pan/zoom | 516 nodes + 554 edges. Node frames and icons are `<image>` elements using the game's art. |
+| Pan / zoom | Hand-written in `TreeView.tsx` | Wheel zoom around the cursor (non-passive listener), drag to pan (4 px threshold separates drag from click), double-click to fit. No touch pinch yet. |
+| State | `useReducer` in `state.ts` | Allocation list + undo/redo history, mirrored to the URL hash and localStorage. Other UI state is `useState` in `App.tsx`. |
+| Tests | Vitest | `src/core/core.test.ts` runs against the real `public/data/black-pyramid.9.0.4.json`. |
+| Data tools | Plain Node ESM in `tools/`, no dependencies | Node ≥ 23.8 for `zlib.zstdDecompressSync`. See [data-model.md](data-model.md#pipeline). |
+| Hosting | Static (planned: GitHub Pages) | No backend. |
 
 ## Layout
 
 ```
 nagash_calc/
-├── docs/                    project documentation (this folder)
+├── CLAUDE.md                instructions + context for AI sessions (start here)
+├── docs/                    spec and findings (this folder)
+│   ├── decisions.md         user decisions and why the planner behaves as it does
+│   ├── dev-notes.md         how to work on this repo (testing in a browser, gotchas)
 │   └── reference/           screenshots and icons gathered during research
 ├── game_files/              raw game packs and extracts (git-ignored, see game_files/README.md)
 ├── public/
-│   ├── data/                generated tree JSON per game version, plus index tables
-│   └── assets/              nodes/ (cluster icons), effects/ (effect icons), skin/ (background, node frames)
+│   ├── data/                black-pyramid.<ver>.json + .index.json (generated, committed)
+│   └── assets/              nodes/, effects/, skin/, units/ images (generated from game files)
 ├── src/
-│   ├── core/                framework-free logic: NO React imports
-│   │   ├── types.ts         TreeData / Build types (see docs/data-model.md)
-│   │   ├── graph.ts         adjacency, reachability from the start, orphan detection
-│   │   ├── pathing.ts       shortest path from the allocated set to a target (multi-source BFS, weighted by cost)
-│   │   ├── rules.ts         allocate / deallocate / gateway validation
-│   │   ├── summary.ts       aggregate effects across allocated nodes
-│   │   ├── encoding.ts      build ↔ URL hash, version migration
-│   │   └── search.ts        text index over names, effects, unit names
-│   ├── state/               Zustand store, history (undo/redo), URL sync, localStorage
+│   ├── core/                framework-free logic: NO React imports, pure functions
+│   │   ├── types.ts         TreeData and friends (mirrors docs/data-model.md)
+│   │   ├── tree.ts          buildIndex: lookups, adjacency, gateway tiers, node segments, units
+│   │   ├── rules.ts         pathTo, allocate, refund(Set), gatewayStatus, closedGates, reachable, lockReason, normalize
+│   │   ├── summary.ts       summarize (by section), summarizeByUnit (per-unit groups, army conditions, "All units")
+│   │   ├── units.ts         unitBonuses (Sigils that reach a unit), searchUnits
+│   │   ├── search.ts        termScore + buildSearch (Sigil search)
+│   │   ├── encoding.ts      build ↔ "#b=904.<base64url>" share string
+│   │   └── core.test.ts     all unit tests
+│   ├── state.ts             useBuild: allocation + undo/redo + URL/localStorage sync, cleanup on load
+│   ├── App.tsx              data loading; Planner: hover/preview, search state, Units tab state, keyboard shortcuts
 │   ├── components/
-│   │   ├── tree/            TreeCanvas, NodeView, EdgeView, Tooltip
-│   │   ├── panels/          SummaryPanel, SearchBar, SigilCounter, BudgetCalculator
-│   │   └── layout/          app shell, toolbar
+│   │   ├── TreeView.tsx     SVG tree, pan/zoom, node/edge states (active, preview, remove, locked, closed, match)
+│   │   ├── Tooltip.tsx      node tooltip (effects, cost, lock reason, refund preview); used by tree, search and unit rows
+│   │   └── Sidebar.tsx      Sigil counter + gateways, Sigils/Units search tabs, Combined bonuses (By section / By unit)
+│   ├── styles.css
 │   └── main.tsx
-├── tools/
-│   ├── lib/                 pack.mjs (PFH5 reader), schema.mjs (RPFM schema), db.mjs (DB tables + .loc)
-│   ├── extract-game-files.mjs
-│   └── build-tree.mjs
-└── tests/
+└── tools/
+    ├── lib/                 pack.mjs (PFH5 reader), schema.mjs (RPFM .ron → defs), db.mjs (DB tables + .loc)
+    ├── extract-game-files.mjs
+    └── build-tree.mjs       joins tables → tree JSON, resolves unit targets, copies images, validates
 ```
 
-## Core logic notes
+## Core logic
 
-- **Allocation path**: run a multi-source BFS from every allocated node at once (Dijkstra if costs ever differ from 1) to the target. Walk only unallocated nodes whose gateway is satisfied. The search runs on hover for the path preview, which is cheap at this size.
-- **Deallocation**: remove the node, then run a BFS from the start over what is still allocated. Anything not reached gets removed too. Then re-check the gateway thresholds against the new count.
-- **Gateway check**: precompute each node's **segment** (0–3) by blocking every gateway of tier ≥ k and running a BFS from the start. A gateway of tier k can be allocated when the allocated nodes in segments < k number at least its threshold. A deallocation is invalid if any allocated gateway then fails this check. See [game-mechanics.md §2](game-mechanics.md#2-allocation-rules).
-- **Pure functions**: `core/` functions take `(tree, build)` and return a new build or a result. They have no side effects, which makes undo/redo trivial and keeps them testable.
+- **Index** (`tree.ts`): adjacency lists, gateway tiers (from the sorted distinct thresholds 10/50/100), and each node's
+  **segment** (0–3). The segment is the lowest k at which the node can be reached from the start when only gateways of
+  tier ≤ k may be crossed.
+- **Allocation** (`rules.pathTo`): a multi-source BFS from the active set to the target.
+  - First it tries the unrestricted shortest path and accepts it if the result is valid (the path's own Sigils count
+    towards thresholds).
+  - Otherwise it goes around closed gateways.
+  - It returns `[]` if the target can't be reached yet.
+- **Refund** (`rules.refundSet`): remove the node, then `prune`. Prune keeps only what is connected to the start, drops
+  every gateway whose tier now falls short, and repeats until stable. Saved and shared builds go through the same
+  `normalize` on load.
+- **Gateway status**: the Sigils (cost) in segments below tier t are counted against threshold t. "Open" means count ≥ threshold.
+- **Summaries** (`summary.ts`):
+  - **By section:** effects grouped by the node's supercluster (plus "Pathways to Eternity" and "Gateways"). Identical
+    effect + scope are summed and re-rendered from `effectTemplates`.
+  - **By unit:** each node effect with a `target` is added per unit, keyed by per-unit template + scope + condition.
+    - Effects whose target covers every unit go to **"All units"** instead.
+    - Units are grouped by their *unconditional* lines; units with only army-level lines are grouped by those.
+    - Army-level lines appear per group under their condition, naming the units when only some of the group get them.
+    - Untargeted effects go under "Not unit-specific".
+- **Search** (`search.ts`): space-separated terms. Each term must appear as an unbroken substring (mid-word is fine).
+  All terms must match within **one field**: the node name, or a single effect line with its scope. Terms can come in
+  any order. Connectors are excluded. Results are ranked: word start +20, whole word +10.
+- **Unit lookup** (`units.ts`): Sigils with any effect whose target contains the unit; unit-specific Sigils first, then
+  "Bonuses for every unit".
 
 ## Rendering notes
 
-- Draw in this order: background (an optional faint pyramid shape) → edges → nodes → highlights → labels.
-- Node state is shown with CSS classes on the `<g>` of each node, not with re-renders. React memoises `NodeView` by `(key, state)`.
-- Level of detail: hide labels and connector icons below a zoom threshold.
-- Icons are referenced through `<image href>`. Preload them all; the total is small.
+- Draw order: background `bg_nag_black_pyramid.png` (1600×1200 in tree coordinates, i.e. half its pixel size) → edges → nodes.
+- Node frame image by tier and state:
+  - default: `nag_pyramid_node_{key,major,minor,gate}.png`
+  - allocated: `…_chosen.bg` / `gate_complete_bg`
+  - path preview: `…_selected`
+
+  Icons switch to their `_active.png` variant when allocated.
+- Closed gateways get `chained_lock.png` on top. Nodes behind a closed gateway get the CSS class `locked` (dimmed). While
+  searching, non-matching nodes dim and matches get a gold ring.
+- `NodeView` is `memo`ised on its props, so hovering recomputes the preview sets but only re-renders the nodes that change.
+- Tooltip opens next to the cursor on the tree. From sidebar rows it's anchored to the row's left edge
+  (`Hover.side = "left"`) so it never covers the list.

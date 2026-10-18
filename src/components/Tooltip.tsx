@@ -25,12 +25,12 @@ export function Tooltip({ index, active, hover, preview }: Props) {
     const el = ref.current!;
     const w = el.offsetWidth;
     const h = el.offsetHeight;
-    let left = hover.x + 18;
-    let top = hover.y + 18;
+    let left = hover.side === "left" ? hover.x - w - 12 : hover.x + 18;
+    let top = hover.side === "left" ? hover.y : hover.y + 18;
     if (left + w > window.innerWidth - 8) left = hover.x - w - 18;
     if (top + h > window.innerHeight - 8) top = Math.max(8, window.innerHeight - h - 8);
     setPos({ left: Math.max(8, left), top });
-  }, [hover.x, hover.y, hover.key]);
+  }, [hover.x, hover.y, hover.key, hover.side]);
 
   // Not reachable yet: explain which gateways are still locked, with current counts (same numbers as the sidebar).
   const current = gatewayStatus(index, active);

@@ -42,8 +42,9 @@ Priorities:
 
 | Feature | Detail |
 |---|---|
-| Search box | Matches node names, effect text, **unit names**, and cluster names (as in game since 9.0.4). Matches glow on the tree, and the count is shown. |
+| Search box | Each space-separated word must appear as **one unbroken piece** (anywhere, even mid-word: "vla" matches "vlad" and "somevlathing", not "v… la…"). Words can come in any order, but all of them must match within **one field**: the node name or a single effect line, scope included ("Battle healing cap: +20% (Vlad von Carstein)"). Never across the name and effects or across two effects. Effect lines include unit names. "Pathways to Eternity" connectors are left out. Results are ranked (whole-word and word-start matches first), and matches glow on the tree. An × button clears it. |
 | Jump to match | Enter or arrow keys cycle the camera through matches. |
+| Units tab | Next to the Sigil search, a **Units** tab: search the roster by name (same unbroken-word matching), pick a unit, and every Sigil with an effect that applies to it is highlighted on the tree (others dimmed). The panel lists those Sigils with the bonuses as they apply to that unit (scope/condition included; unit-specific first, then "Bonuses for every unit"), marks empowered ones, and rows behave like search results (hover = node tooltip and path preview, click = jump). × returns to the unit list. |
 | Category filters (P1) | Toggle chips such as *Tomb Kings*, *Vampire Counts*, *Vampire Coast*, *Nagash*, *Economy*, *Grave Call*, *Books*. Non-matching nodes are dimmed. |
 
 ## 4. Build summary (P0)
@@ -53,7 +54,7 @@ Priorities:
 | Aggregated effects | A side panel sums every allocated effect, grouped by category: Nagash, Lords/Heroes, per roster, economy, campaign. Numeric effects with the same key are added up (e.g. "Upkeep −10%" + "Upkeep −10%" → "Upkeep −20%"). |
 | Unlocks list | Units unlocked for recruitment or Grave Call, abilities gained, spells. |
 | Click to locate | Hovering a summary line highlights the nodes that contribute to it. |
-| By unit | A switch between **By section** and **By unit**. **By unit** shows: <ul><li>each roster unit's bonuses, summed per unit (the same bonus from several nodes adds up, and the unit list is stripped from the text);</li><li>units with **exactly identical** bonus lists merged into one group with their unit cards; one differing bonus or value splits them;</li><li>Grave Call unlocks first in each group;</li><li>effects that aren't unit-specific (faction, characters, campaign) listed afterwards under "Not unit-specific".</li></ul>The choice is remembered. |
+| By unit | A switch between **By section** and **By unit**. **By unit** shows: <ul><li>each roster unit's bonuses, summed per unit (the same bonus from several nodes adds up, and the unit list is stripped from the text);</li><li>units with **exactly identical** unconditional bonus lists merged into one group with their unit cards; one differing bonus or value splits them;</li><li>**army-level bonuses** (only in Nagash's army, or only in armies led by a Tomb Kings / Vampire Counts / Vampire Coast Lord or Nagash) never split groups. They are listed per group under "Only in …", naming the units when only some of the group get them. Units with *only* army-level bonuses are grouped by those instead;</li><li>bonuses that reach **every** unit appear once in an **"All units"** card at the top, not in each group;</li><li>character-scoped bonuses ("(Nagash)", "(Krell)", "(all Heroes)", "(all Lords)") only go to those characters. Nagash and the Legendary Lords are included as units;</li><li>every unit shows its card or portrait;</li><li>Grave Call unlocks first in each group;</li><li>effects that aren't unit-specific (faction, characters, campaign) listed afterwards under "Not unit-specific".</li></ul>The choice is remembered. |
 
 ## 5. Sharing and persistence (P0)
 

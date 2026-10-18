@@ -3,6 +3,7 @@ import { buildIndex, type TreeIndex } from "./core/tree";
 import type { TreeData } from "./core/types";
 import { activeSet, allocate, closedGates, pathTo, reachable, refund, refundSet } from "./core/rules";
 import { buildSearch } from "./core/search";
+import { unitBonuses } from "./core/units";
 import { useBuild } from "./state";
 import { TreeView } from "./components/TreeView";
 import { Tooltip } from "./components/Tooltip";
@@ -26,10 +27,14 @@ export function App() {
   return <Planner index={index} />;
 }
 
+export type SearchTab = "sigils" | "units";
+
 export interface Hover {
   key: string;
   x: number;
   y: number;
+  /** Open the tooltip to the left of (x, y), e.g. when hovering a row in the sidebar. Default: next to the cursor. */
+  side?: "left";
 }
 
 function Planner({ index }: { index: TreeIndex }) {
@@ -48,6 +53,16 @@ function Planner({ index }: { index: TreeIndex }) {
 
   const search = useMemo(() => buildSearch(index), [index]);
   const matches = useMemo(() => (query.trim() ? new Set(search(query)) : null), [search, query]);
+
+  // "Units" tab: pick a unit and highlight every Sigil whose bonuses can apply to it.
+  const [searchTab, setSearchTab] = useState<SearchTab>("sigils");
+  const [unitQuery, setUnitQuery] = useState("");
+  const [selectedUnit, setSelectedUnit] = useState<string | null>(null);
+  const unitNodes = useMemo(() => (selectedUnit ? unitBonuses(index, selectedUnit) : null), [index, selectedUnit]);
+  const treeMatches = useMemo(
+    () => (searchTab === "sigils" ? matches : unitNodes ? new Set(unitNodes.map((b) => b.node.key)) : null),
+    [searchTab, matches, unitNodes],
+  );
 
   // Hover preview: what a click would add (path) or remove (refund).
   const preview = useMemo(() => {
@@ -90,13 +105,12 @@ function Planner({ index }: { index: TreeIndex }) {
           locked={locked}
           previewAdd={preview.add}
           previewRemove={preview.remove}
-          matches={matches}
+          matches={treeMatches}
           highlight={highlight}
           focus={focus}
           onHover={setHover}
           onClick={onNodeClick}
         />
-        {hover && <Tooltip index={index} active={active} hover={hover} preview={preview} />}
         <div className="hint">Click a Sigil to empower it and the path to it · click an empowered Sigil to refund it · scroll to zoom · drag to pan</div>
       </main>
       <Sidebar
@@ -106,9 +120,18 @@ function Planner({ index }: { index: TreeIndex }) {
         query={query}
         onQuery={setQuery}
         matches={matches}
+        searchTab={searchTab}
+        onSearchTab={setSearchTab}
+        unitQuery={unitQuery}
+        onUnitQuery={setUnitQuery}
+        selectedUnit={selectedUnit}
+        onSelectUnit={setSelectedUnit}
+        unitNodes={unitNodes}
         onHighlight={setHighlight}
+        onHover={setHover}
         onFocus={(key) => setFocus((f) => ({ key, n: (f?.n ?? 0) + 1 }))}
       />
+      {hover && <Tooltip index={index} active={active} hover={hover} preview={preview} />}
     </div>
   );
 }

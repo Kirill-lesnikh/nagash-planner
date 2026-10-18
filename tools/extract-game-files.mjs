@@ -37,6 +37,16 @@ const FULL_TABLES = [
 ];
 
 const FACTION = "wh3_dlc29_nag_host_of_nagash";
+// Characters that node effects name in their scope but that aren't in the recruitable roster
+// (Nagash himself and the Legendary Lord Mortarchs). Base unit only, no mount variants.
+const EXTRA_CHARACTER_UNITS = [
+  "wh3_dlc29_vmp_cha_nagash",
+  "wh2_dlc09_tmb_cha_arkhan_0",
+  "wh_main_vmp_cha_mannfred_von_carstein_0",
+  "wh_dlc04_vmp_cha_vlad_von_carstein_0",
+  "wh2_dlc11_cst_cha_luthor_harkon_0",
+  "wh3_dlc29_vmp_cha_neferata",
+];
 
 const SCRIPTS = [
   "script/campaign/wh3_dlc29_nag_black_pyramid.lua",
@@ -134,7 +144,7 @@ function extractUnits(read, save, out, effectKeys) {
   const faction = read("factions").rows.find((r) => r.key === FACTION);
   const perms = read("units_to_groupings_military_permissions");
   save("units_to_groupings_military_permissions", perms, perms.rows.filter((r) => r.military_group === faction.military_group));
-  const roster = new Set(out.units_to_groupings_military_permissions.map((r) => r.unit));
+  const roster = new Set([...out.units_to_groupings_military_permissions.map((r) => r.unit), ...EXTRA_CHARACTER_UNITS]);
 
   const mainUnits = read("main_units");
   save("main_units", mainUnits, mainUnits.rows.filter((r) => roster.has(r.unit)));
@@ -164,6 +174,34 @@ function extractUnits(read, save, out, effectKeys) {
   save("unit_sets", sets, sets.rows.filter((r) => unitSets.has(r.key)));
   const setUnits = read("unit_set_to_unit_junctions");
   save("unit_set_to_unit_junctions", setUnits, setUnits.rows.filter((r) => unitSets.has(r.unit_set)));
+
+  // Lords and heroes have no unit card; their portrait comes from the custom battle setup (general_portrait).
+  // Prefer this faction's row; variants without a row (e.g. a mount version) borrow the closest relative's portrait.
+  const permissions = read("units_custom_battle_permissions").rows.filter((r) => r.general_portrait);
+  const portraitOf = (unit) =>
+    (permissions.find((r) => r.unit === unit && r.faction === FACTION) ?? permissions.find((r) => r.unit === unit))?.general_portrait;
+  const portraits = [];
+  for (const unit of roster) {
+    if (!/_cha_/.test(unit)) continue;
+    let portrait = portraitOf(unit);
+    // Fallback: drop trailing name parts after "_cha_" until some unit with that stem has a portrait.
+    const stem = unit.split("_cha_")[1].replace(/_\d+$/, "").split("_");
+    while (!portrait && stem.length) {
+      const needle = `_cha_${stem.join("_")}`;
+      const relative = permissions.find((r) => r.unit.includes(needle) && r.unit.split("_")[1] === unit.split("_")[1]) ??
+        permissions.find((r) => r.unit.includes(needle));
+      portrait = relative?.general_portrait;
+      stem.pop();
+    }
+    if (portrait) portraits.push({ unit, portrait: portrait.replaceAll("\\", "/").toLowerCase() });
+  }
+  out.unit_portraits = portraits;
+  writeJson(path.join(EXTRACTED, "db", "unit_portraits.json"), {
+    table: "derived from units_custom_battle_permissions_tables (general_portrait)",
+    fields: ["unit", "portrait"],
+    rows: portraits,
+  });
+  console.log(`  unit_portraits: ${portraits.length} rows`);
 }
 
 // Collects every loc entry the tree needs, then follows {{tr:key}} references so the text can be fully resolved offline.
@@ -219,7 +257,8 @@ function extractScripts() {
 function extractUi(db) {
   const effectIcons = new Set(db.effects.flatMap((r) => [r.icon, r.icon_negative]).map((i) => i.toLowerCase()));
   const unitIcons = new Set(db.main_units.flatMap((r) => [r.unit, r.land_unit]).map((k) => `${k.toLowerCase()}.png`));
-  let layouts = 0, skins = 0, icons = 0, units = 0;
+  const portraitPaths = new Set(db.unit_portraits.map((r) => r.portrait));
+  let layouts = 0, skins = 0, icons = 0, units = 0, portraits = 0;
   for (const name of UI_PACKS) {
     const pk = new Pack(path.join(GAME_DIR, "data", name));
     for (const f of pk.list()) {
@@ -233,12 +272,14 @@ function extractUi(db) {
         // Card icons exist only for newer units; minspec_portholes are the game's static fallback portraits.
         const folder = /\/icons\//i.test(n) ? "unit_icons" : "unit_portholes";
         dst = path.join("ui", folder, path.basename(n).toLowerCase()); units++;
+      } else if (portraitPaths.has(n.toLowerCase())) {
+        dst = path.join("ui", "character_portraits", path.basename(n).toLowerCase()); portraits++;
       }
       if (dst) writeFile(path.join(EXTRACTED, dst), pk.read(n));
     }
     pk.close();
   }
-  console.log(`  layouts: ${layouts}, skin images: ${skins}, effect icons: ${icons} (of ${effectIcons.size} referenced), unit icons: ${units}`);
+  console.log(`  layouts: ${layouts}, skin images: ${skins}, effect icons: ${icons} (of ${effectIcons.size} referenced), unit icons: ${units}, character portraits: ${portraits} (of ${portraitPaths.size})`);
 }
 
 function steamBuild() {

@@ -11,13 +11,15 @@ An interactive web planner for **The Black Pyramid of Nagash**, the research tre
 
 ## Status
 
-**Working MVP.** You can:
+**Working planner.** You can:
 
-- search Sigils (by name, effect text, unit, cluster or section),
-- click to empower a Sigil along the shortest path,
-- click an empowered Sigil to refund it,
-- read the combined bonuses grouped by section,
-- see how many Sigils the plan needs, including gateway shortfalls,
+- **search Sigils**: each word as an unbroken piece, all words within the name or one effect line;
+- **look up a unit** (Units tab) to highlight every Sigil that can give it bonuses;
+- **click to empower** a Sigil along the shortest path (gateways are enforced like in game);
+- **click an empowered Sigil to refund it** (free, instant);
+- **read the combined bonuses**, either **by section** or **by unit** (identical units merged, army-level bonuses
+  listed per condition, bonuses for everyone in an "All units" card);
+- see the **Sigils needed** and each gateway's progress;
 - undo/redo, and share the build as a link.
 
 The tree data comes straight from the game files. See the [roadmap](docs/roadmap.md).
@@ -43,7 +45,9 @@ node tools/build-tree.mjs 9.0.4       # writes public/data/black-pyramid.9.0.4.j
 | [docs/game-mechanics.md](docs/game-mechanics.md) | How the Black Pyramid works: sigils, gateways, layout, known nodes, sigil sources, open questions |
 | [docs/features.md](docs/features.md) | Feature spec, with priorities |
 | [docs/data-model.md](docs/data-model.md) | Tree JSON schema, build/URL encoding, the pipeline for extracting game data |
-| [docs/architecture.md](docs/architecture.md) | Proposed stack and code layout |
+| [docs/architecture.md](docs/architecture.md) | Stack, code layout, how the core logic works |
+| [docs/decisions.md](docs/decisions.md) | Product decisions made with the user (search rules, refunds, grouping, …) |
+| [docs/dev-notes.md](docs/dev-notes.md) | Working notes: environment, pipeline gotchas, browser testing |
 | [docs/roadmap.md](docs/roadmap.md) | Milestones |
 | [docs/sources.md](docs/sources.md) | Every research source |
 | [docs/reference/](docs/reference/) | Full-tree screenshot and icons |

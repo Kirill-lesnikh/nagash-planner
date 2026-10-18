@@ -9,7 +9,7 @@
 - [x] Answer the open questions about edges (undirected), gateways (10/50/100, segments), costs (1) and disempowering (individual, costs Dark Magic).
 - [x] Document the tables, joins and loc keys in `docs/data-model.md`.
 - [x] `tools/extract-game-files.mjs` and `tools/build-tree.mjs` (with built-in validation). They produce `public/data/black-pyramid.9.0.4.json` and the art.
-- [ ] Remaining: the Dark Magic disempower cost, and the exact segment-counting rule (see [open questions](game-mechanics.md#open-questions)). Confirm in game.
+- [ ] Confirm in game: the exact segment-counting rule (see [open questions](game-mechanics.md#open-questions)). The Dark Magic refund cost is irrelevant, because the planner ignores it (see [decisions.md](decisions.md)).
 
 ## M2: Core logic ✅
 - [x] Scaffold Vite + React + TS + Vitest.
@@ -28,10 +28,20 @@
 ## M3.5: Bonuses per unit ✅
 - [x] Extract the roster, unit sets and effect→unit links; resolve them in `build-tree`, including scripted Grave Call unlocks.
 - [x] "By unit" summary: per-unit sums, with units merged when their bonuses are identical.
+- [x] Army-level conditions (Nagash's army, armies led by a given lord) listed per group without splitting groups.
+- [x] Character scopes narrow unit targets ("(Nagash)" goes to Nagash only); Nagash and the Legendary Lords added as units.
+- [x] "All units" card for bonuses every unit gets.
+- [x] Every unit has an image (unit card, fallback portrait, or custom-battle character portrait).
+
+## M3.6: Search and lookup ✅
+- [x] Search: unbroken-substring words, all within one field (name or one effect line with scope), connectors excluded, × clear button, ranked results.
+- [x] Search results and Units-tab rows show the node tooltip on hover.
+- [x] Units tab: pick a unit to highlight every Sigil that can give it bonuses.
 
 ## M4: Polish and ship
 - [ ] Touch pinch-zoom; a mobile layout check.
-- [ ] Convert the images to webp if size matters.
+- [ ] Shrink images in the build step: unit portraits are 164 px but shown at 22 px (`public/assets/units` ≈ 6 MB), and the background PNG is 6.5 MB.
+- [ ] Possibly link the 4 ability-targeted effects (e.g. Khemric Titan "Gaze of Dust") to their units.
 - [ ] Deploy to GitHub Pages.
 
 ## M5: Planning extras (P1)

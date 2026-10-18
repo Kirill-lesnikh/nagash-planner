@@ -63,7 +63,7 @@ function copyImage(gamePath, subdir) {
   const base = gamePath.replaceAll("\\", "/").split("/").pop().toLowerCase();
   const rel = `assets/${subdir}/${base}`;
   if (!copied.has(rel)) {
-    const candidates = ["skin/icons", "skin", "effect_icons", "unit_icons", "unit_portholes"].map((d) => path.join(SRC, "ui", d, base));
+    const candidates = ["skin/icons", "skin", "effect_icons", "unit_icons", "unit_portholes", "character_portraits"].map((d) => path.join(SRC, "ui", d, base));
     const src = candidates.find((c) => fs.existsSync(c));
     if (!src) {
       console.warn(`  missing image ${gamePath}`);
@@ -115,6 +115,20 @@ const clusters = clusterRows
   }))
   .sort((a, b) => a.supercluster.localeCompare(b.supercluster) || a.sortOrder - b.sortOrder);
 
+// Army-level conditions: effects whose scope limits them to certain armies rather than all of them.
+const scopeRows = Object.fromEntries(table("campaign_effect_scopes").map((r) => [r.key, r]));
+const LORD_CULTURE = { tmb: "Tomb Kings", vmp: "Vampire Counts", cst: "Vampire Coast" };
+function armyCondition(scopeKey, scopeText) {
+  const s = scopeRows[scopeKey];
+  if (!s) return undefined;
+  if (s.target === "force_if_commanded_by_faction_leader") return "Nagash's army";
+  // These scopes have no display text; the key names the lord culture (and "_nag" adds Nagash, per patch 9.0.3 notes).
+  const m = /force_own_(tmb|vmp|cst)(_nag)?_unseen$/.exec(scopeKey);
+  if (m) return `armies led by a ${LORD_CULTURE[m[1]]} Lord${m[2] ? " or Nagash" : ""}`;
+  if (s.target === "force" && /'s army\)$/.test(scopeText)) return scopeText.slice(1, -1); // e.g. "(Mannfred von Carstein's army)"
+  return undefined;
+}
+
 let hiddenEffects = 0;
 // Effect text templates (with %+n / %n placeholders) so the app can re-render summed values.
 const effectTemplates = {};
@@ -128,14 +142,19 @@ const nodes = graphNodes.map((g) => {
       hiddenEffects++;
       continue;
     }
-    const scope = text(`campaign_effect_scopes_localised_text_${e.scope}`);
+    const scopeText = text(`campaign_effect_scopes_localised_text_${e.scope}`).replace(/\s+/g, " ").trim();
+    const condition = armyCondition(e.scope, scopeText);
+    // Hidden scopes still deserve a visible condition.
+    const scope = scopeText || (condition ? `(${condition})` : "");
     effectTemplates[e.effect] = template;
     effects.push({
       key: e.effect,
       text: renderEffect(template, e.value),
       value: e.value,
       ...(scope && { scope }),
+      ...(condition && { condition }),
       icon: copyImage(effectRows[e.effect]?.icon, "effects"),
+      _scope: e.scope, // resolved into `target` once unit targets are known, then dropped
     });
   }
   const isStart = g.key === graph.origin_node;
@@ -230,15 +249,52 @@ const gravecallEffects = new Set();
   }
 }
 
+// The unit set says which units an effect can touch; a character scope narrows it further.
+// E.g. generic character stat effects target a set of every unit, and "(Nagash)" / "(all Heroes)" picks who really gets it.
+const NAMED_CHARACTER = {
+  krell: /_cha_krell/,
+  dieter: /_cha_dieter_helsnicht/,
+  walach: /_cha_walach_harkon/,
+  luthor: /_cha_luthor_harkon/,
+  arkhan: /_cha_arkhan/,
+  mannfred: /_cha_mannfred_von_carstein/,
+  vlad: /_cha_vlad_von_carstein/,
+  neferata: /_cha_neferata/,
+};
+function narrowByScope(units, scopeKey) {
+  const s = scopeRows[scopeKey];
+  if (!s) return units;
+  const caste = (u) => mainUnits.get(u).caste;
+  if (s.target === "character_if_faction_leader") return units.filter((u) => /_cha_nagash$/.test(u));
+  const named = /^faction_to_character_([a-z]+)/.exec(scopeKey)?.[1];
+  if (NAMED_CHARACTER[named]) return units.filter((u) => NAMED_CHARACTER[named].test(u));
+  if (scopeKey.includes("heroes_only")) return units.filter((u) => caste(u) === "hero");
+  if (s.target === "character_when_commanding") return units.filter((u) => caste(u) === "lord");
+  if (s.target === "character") return units.filter((u) => caste(u) === "lord" || caste(u) === "hero");
+  return units;
+}
+
 // Per-unit text: drop the "for <unit list> units" part so the same bonus reads the same on every unit.
+// Targets are keyed per effect, or per effect@scope when the scope narrows them; node effects point at their key.
 const unitEffectTemplates = {};
 const effectTargets = {};
-for (const [effect, units] of effectUnits) {
-  if (!units.size || !effectTemplates[effect]) continue;
-  effectTargets[effect] = [...units].sort();
+for (const node of nodes) {
+  for (const e of node.effects) {
+    const scopeKey = e._scope;
+    delete e._scope;
+    const all = [...(effectUnits.get(e.key) ?? [])].sort();
+    const units = narrowByScope(all, scopeKey);
+    if (!units.length || !effectTemplates[e.key]) continue;
+    const id = units.length === all.length ? e.key : `${e.key}@${scopeKey}`;
+    e.target = id;
+    effectTargets[id] = units;
+  }
+}
+for (const effect of new Set(Object.keys(effectTargets).map((id) => id.split("@")[0]))) {
+  // The army condition is shown separately, so "when led by …" goes too.
   unitEffectTemplates[effect] = gravecallEffects.has(effect)
     ? GRAVE_CALL_TEXT
-    : effectTemplates[effect].replace(/ for .+? units?\b/, "").trim();
+    : effectTemplates[effect].replace(/ for .+? units?\b/, "").replace(/ when led by [^\n]+/, "").trim();
 }
 
 const CULTURE = [
@@ -247,12 +303,16 @@ const CULTURE = [
   [/_cst_/, "Vampire Coast"],
 ];
 const targetedUnits = new Set(Object.values(effectTargets).flat());
+// Lords and heroes: portrait from the custom battle setup (see extract-game-files.mjs).
+const portraitByUnit = new Map(table("unit_portraits").map((r) => [r.unit, path.basename(r.portrait)]));
 const units = [...targetedUnits]
   .map((key) => {
     const m = mainUnits.get(key);
-    const iconSrc = [m.unit, m.land_unit].map((k) => k.toLowerCase() + ".png").find((f) =>
-      ["unit_icons", "unit_portholes"].some((d) => fs.existsSync(path.join(SRC, "ui", d, f))),
-    );
+    const iconSrc =
+      [m.unit, m.land_unit]
+        .map((k) => k.toLowerCase() + ".png")
+        .find((f) => ["unit_icons", "unit_portholes"].some((d) => fs.existsSync(path.join(SRC, "ui", d, f)))) ??
+      [portraitByUnit.get(key)].find((f) => f && fs.existsSync(path.join(SRC, "ui", "character_portraits", f)));
     return {
       key,
       name: text(`land_units_onscreen_name_${m.land_unit}`) || key,
@@ -333,4 +393,6 @@ console.log(`  effects: ${tree.nodes.reduce((s, n) => s + n.effects.length, 0)} 
 console.log(`  images copied: ${copied.size}`);
 const leftover = Object.entries(unitEffectTemplates).filter(([, t]) => / units?\b/.test(t));
 console.log(`  unit-targeted effects: ${Object.keys(effectTargets).length} over ${units.length} units (${gravecallEffects.size} Grave Call unlocks)`);
+const noIcon = units.filter((u) => !u.icon);
+console.log(`  units without icon: ${noIcon.length}`, noIcon.map((u) => u.key));
 if (leftover.length) console.log(`  per-unit texts still naming units: ${leftover.length}`, leftover.slice(0, 5).map(([, t]) => t));

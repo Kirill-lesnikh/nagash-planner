@@ -59,7 +59,7 @@ All of these come from game data or in-game text. **[G]**
 
    **Planner model [C]:** a gateway of tier *k* can be empowered when the number of empowered sigils in segments *before* it (0..k−1, gateway nodes included) is at least its threshold. A change is invalid if it leaves any empowered gateway's earlier segments below its threshold. The planner enforces this: locked gateways block allocation, and refunds cascade through gateways that fall short.
 7. **Disempowering (re-allocation).** You can disempower **individual Sigils** or **all active Sigils** at once. It **costs Dark Magic** (the faction's gold). You cannot confirm without enough Dark Magic, or if the change would leave a segment without enough sigils to keep a required gateway unlocked. **[G]**
-   - **[?]** The Dark Magic refund formula (it is not in the initiative tables; probably script/code).
+   - **[?]** The Dark Magic refund formula (it is not in the initiative tables; probably script/code). *The planner deliberately ignores refund costs (user decision), so this doesn't block anything.*
    - **[?]** Does disempowering a node strand its now-disconnected descendants? The planner should simply require the result to stay connected.
 
 ## 3. Tree size and layout
@@ -109,6 +109,27 @@ All of these come from game data or in-game text. **[G]**
   | Grave Call nodes | The lua table `gravecall.initiatives` maps each node to unit keys per roster (tmb / cst / vmp) |
 
   The effect text already describes these behaviours, so the planner needs no extra handling.
+
+### Who an effect applies to [G]
+
+- **Unit set first, scope second.** An effect reaches units through a unit set (or a direct unit link). The scope of the
+  node's effect row then narrows it. The generic character stat effects (`wh_main_effect_character_stat_*`) use a unit
+  set of *every* unit. Only the scope ("(Nagash)", "(Krell)", "(all Heroes)", "(all Lords)", "(all characters)")
+  says who really gets them. The same effect key appears with several different scopes across nodes.
+- **Army-level conditions.** Some unit bonuses only apply in certain armies:
+  - "Nagash's army": scope target `force_if_commanded_by_faction_leader`. For example Upkeep −10% / −15%, Recruit rank +1 and
+    The Dead Rise Again, all reaching every unit.
+  - "Armies led by a Tomb Kings / Vampire Counts / Vampire Coast Lord or Nagash": scopes
+    `faction_to_force_own_{tmb,vmp,cst}_nag_unseen`. These have **no display text in game**; the meaning comes from the key
+    name plus the 9.0.3 patch note ("only applies to units led by a matching lord type, or by Nagash himself"). They are
+    the −10% upkeep nodes *Dread Sentinels*, *The Horrors Underneath* and *Hunger's Icy Depths*. **[G]** + **[V]**
+  - `…_{tmb,vmp,cst}_unseen` (without `_nag`): only armies led by that lord type (army abilities such as "Ryze: Ushabti").
+- **Nagash's own bonuses.** Nagash is not in the recruitable roster (`units_to_groupings_military_permissions`), nor
+  are Arkhan, Mannfred, Vlad, Luthor or Neferata. They are the faction leader and Legendary Lord Mortarchs. Several nodes
+  give Nagash extra copies of army bonuses. For example *No Winds Shall Sway Him* gives Upkeep −10% (Nagash's army) **and**
+  −40% (scope "(Nagash)").
+- **Unit roster.** 150 recruitable units: 13 lords, 30 heroes and 107 regular units. TMB and VMP versions of the same unit
+  (e.g. Skeleton Warriors) are separate units with different bonuses.
 
 ## 5. Sigil sources
 

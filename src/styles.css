@@ -590,3 +590,174 @@ ul.results .dot::before {
   font-size: 15px;
   color: var(--gold);
 }
+
+.chip-more {
+  padding: 2px 8px;
+  font-size: 12px;
+  color: var(--muted);
+  background: var(--bg);
+}
+
+.conditional {
+  margin-top: 8px;
+  padding-top: 6px;
+  border-top: 1px dashed var(--line);
+}
+
+.conditional-title {
+  color: var(--warn);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.conditional ul.effects {
+  margin-top: 4px;
+}
+
+.only-units {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* ---------- search clear button, "All units" card ---------- */
+
+.search-box {
+  position: relative;
+}
+
+.search-box input {
+  padding-right: 30px;
+}
+
+/* Our own clear button replaces the browser's. */
+.search-box input::-webkit-search-cancel-button {
+  display: none;
+}
+
+.search-clear {
+  position: absolute;
+  top: 50%;
+  right: 4px;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.search-clear:hover {
+  color: var(--text);
+}
+
+.unit-group.everyone {
+  border-color: var(--teal-dim);
+}
+
+.unit-group-title {
+  font-weight: 600;
+  color: var(--teal);
+}
+
+/* ---------- search tabs, unit lookup ---------- */
+
+.tabs {
+  display: flex;
+  gap: 2px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--line);
+}
+
+.tabs button {
+  border: none;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  background: transparent;
+  padding: 4px 12px;
+  color: var(--muted);
+}
+
+.tabs button.on {
+  color: var(--gold);
+  border-bottom-color: var(--gold);
+}
+
+.selected-unit {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.selected-unit .unit-chip {
+  flex: 1;
+  font-size: 13px;
+}
+
+.selected-unit .unit-chip img,
+.selected-unit .unit-noicon {
+  width: 30px;
+  height: 30px;
+}
+
+.search-clear.static {
+  position: static;
+  transform: none;
+}
+
+ul.results img.unit-thumb {
+  object-fit: cover;
+  object-position: top;
+  border-radius: 2px;
+}
+
+ul.results.unit-nodes {
+  max-height: 340px;
+}
+
+ul.results li.unit-node {
+  display: block;
+  padding: 4px;
+}
+
+.unit-node-head {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+ul.results li.unit-node.active .r-name {
+  color: var(--teal);
+}
+
+ul.unit-node-lines {
+  list-style: none;
+  margin: 2px 0 0 28px;
+  padding: 0;
+  font-size: 12px;
+  color: var(--text);
+  white-space: pre-line;
+}
+
+ul.results li.results-heading {
+  margin-top: 6px;
+  padding: 4px;
+  color: var(--muted);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  cursor: default;
+}
+
+ul.results li.results-heading:hover {
+  background: none;
+}
+
+ul.results ul.unit-node-lines li {
+  display: block;
+  padding: 0;
+  background: none;
+}
