@@ -9,6 +9,8 @@ An interactive web planner for **The Black Pyramid of Nagash**, the research tre
 
 ![The Black Pyramid tree](docs/reference/black-pyramid-preview.jpg)
 
+**Live site:** https://kirill-lesnikh.github.io/nagash-planner/ (deployed by GitHub Actions on every push to `main`).
+
 ## Status
 
 **Working planner.** You can:

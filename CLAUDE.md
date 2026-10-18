@@ -20,6 +20,13 @@ game files. Start with [README.md](README.md).
 - `node tools/build-tree.mjs 9.0.4`: build `public/data/black-pyramid.9.0.4.json` and `public/assets/`. It validates the
   graph and fails loudly. It also prints any per-unit texts still naming units, and any units without an icon.
 
+## Deployment
+- GitHub: `git@github.com:Kirill-lesnikh/nagash-planner.git` (remote `origin`, pushed over SSH; the `gh` CLI is not installed).
+- Pushing to `main` runs `.github/workflows/deploy.yml`: `npm ci`, `npm test`, `npm run build`, then publish `dist/` to
+  GitHub Pages at https://kirill-lesnikh.github.io/nagash-planner/. Pages must be enabled once in the repo settings
+  (Source: GitHub Actions). Pages on a private repo needs a paid GitHub plan.
+- Pushing publishes code and game art publicly. Push only when the user asks.
+
 ## Rules
 - **Never invent node data.** Everything about nodes comes from the generated `public/data/black-pyramid.<ver>.json`. To
   change it, fix the extractor or builder, not the JSON.

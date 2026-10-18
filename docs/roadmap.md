@@ -42,7 +42,7 @@
 - [ ] Touch pinch-zoom; a mobile layout check.
 - [ ] Shrink images in the build step: unit portraits are 164 px but shown at 22 px (`public/assets/units` ≈ 6 MB), and the background PNG is 6.5 MB.
 - [ ] Possibly link the 4 ability-targeted effects (e.g. Khemric Titan "Gaze of Dust") to their units.
-- [ ] Deploy to GitHub Pages.
+- [x] Deploy to GitHub Pages: `.github/workflows/deploy.yml` (tests + build + publish on push to `main`). Repo: github.com/Kirill-lesnikh/nagash-planner.
 
 ## M5: Planning extras (P1)
 - [ ] Sigil budget calculator.
