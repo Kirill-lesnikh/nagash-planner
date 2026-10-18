@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.vite/
+coverage/
+*.log
+.DS_Store
+
+# Raw game files copied/extracted from the local install - not redistributed
+game_files/*
+!game_files/README.md
