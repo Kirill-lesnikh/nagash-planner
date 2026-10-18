@@ -10,6 +10,7 @@ import { Tooltip } from "./components/Tooltip";
 import { Sidebar } from "./components/Sidebar";
 
 export const DATA_FILE = "data/black-pyramid.9.0.4.json";
+const SIDEBAR_KEY = "nagash-calc:sidebar";
 
 export function App() {
   const [index, setIndex] = useState<TreeIndex | null>(null);
@@ -50,6 +51,24 @@ function Planner({ index }: { index: TreeIndex }) {
   const [query, setQuery] = useState("");
   const [highlight, setHighlight] = useState<string[] | null>(null);
   const [focus, setFocus] = useState<{ key: string; n: number } | null>(null);
+
+  // Right panel can be hidden to give the tree the whole window; remembered per browser.
+  const [sidebarOpen, setSidebarOpen] = useState(() => {
+    try {
+      return localStorage.getItem(SIDEBAR_KEY) !== "closed";
+    } catch {
+      return true;
+    }
+  });
+  const toggleSidebar = () =>
+    setSidebarOpen((open) => {
+      try {
+        localStorage.setItem(SIDEBAR_KEY, open ? "closed" : "open");
+      } catch {
+        // ignore
+      }
+      return !open;
+    });
 
   const search = useMemo(() => buildSearch(index), [index]);
   const matches = useMemo(() => (query.trim() ? new Set(search(query)) : null), [search, query]);
@@ -100,6 +119,7 @@ function Planner({ index }: { index: TreeIndex }) {
       <main className="tree-pane">
         <TreeView
           index={index}
+          rightInset={sidebarOpen && window.innerWidth > 800 ? 400 : 0}
           active={active}
           closed={closed}
           locked={locked}
@@ -113,24 +133,38 @@ function Planner({ index }: { index: TreeIndex }) {
         />
         <div className="hint">Click a Sigil to empower it and the path to it · click an empowered Sigil to refund it · scroll to zoom · drag to pan</div>
       </main>
-      <Sidebar
-        index={index}
-        build={build}
-        active={active}
-        query={query}
-        onQuery={setQuery}
-        matches={matches}
-        searchTab={searchTab}
-        onSearchTab={setSearchTab}
-        unitQuery={unitQuery}
-        onUnitQuery={setUnitQuery}
-        selectedUnit={selectedUnit}
-        onSelectUnit={setSelectedUnit}
-        unitNodes={unitNodes}
-        onHighlight={setHighlight}
-        onHover={setHover}
-        onFocus={(key) => setFocus((f) => ({ key, n: (f?.n ?? 0) + 1 }))}
-      />
+      <div className={`sidebar-wrap${sidebarOpen ? "" : " collapsed"}`}>
+        <button
+          className="sidebar-toggle"
+          onClick={toggleSidebar}
+          aria-label={sidebarOpen ? "Hide panel" : "Show panel"}
+          aria-expanded={sidebarOpen}
+          title={sidebarOpen ? "Hide panel" : "Show panel"}
+        >
+          {sidebarOpen ? "›" : "‹"}
+        </button>
+        {/* Slides off-screen when collapsed but stays mounted, so panel state survives. */}
+        <div className="sidebar-inner" aria-hidden={!sidebarOpen}>
+          <Sidebar
+            index={index}
+            build={build}
+            active={active}
+            query={query}
+            onQuery={setQuery}
+            matches={matches}
+            searchTab={searchTab}
+            onSearchTab={setSearchTab}
+            unitQuery={unitQuery}
+            onUnitQuery={setUnitQuery}
+            selectedUnit={selectedUnit}
+            onSelectUnit={setSelectedUnit}
+            unitNodes={unitNodes}
+            onHighlight={setHighlight}
+            onHover={setHover}
+            onFocus={(key) => setFocus((f) => ({ key, n: (f?.n ?? 0) + 1 }))}
+          />
+        </div>
+      </div>
       {hover && <Tooltip index={index} active={active} hover={hover} preview={preview} />}
     </div>
   );

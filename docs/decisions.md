@@ -13,6 +13,9 @@ requests, often corrections of an earlier implementation. Newest last. All dates
   before it. Nodes behind it are dimmed and can't be allocated. A refund that leaves a gateway short also refunds the
   gateway and everything behind it. An earlier version only warned; the user rejected that ("gateways have no closed
   state, i can allocate tier 2 or 3 sigil without spending enough sigil").
+- "Before a gateway" counts only Sigils connected to the start **without going through that gateway** (or another of
+  the same or higher tier). The user found *Tides of the Abyss* could be taken at 48/50 because the two Sigils behind
+  Gateway II were counted.
 
 ## Search (Sigils tab)
 
@@ -63,6 +66,11 @@ Rejected along the way, in order:
 
 - A second search tab: search a unit, pick it, and **highlight all Sigils whose bonuses may apply to it**. The list shows
   those bonuses worded for the unit; unit-specific Sigils come first, then "Bonuses for every unit".
+
+## Layout
+
+- The right panel is **hideable** with a button on its left edge, vertically in the middle; the same button expands it again.
+- Showing or hiding the panel must **not move anything under it**. The panel overlays the tree (it doesn't resize it).
 
 ## Assets
 

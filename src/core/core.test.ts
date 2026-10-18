@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
 import { buildIndex } from "./tree";
-import { activeSet, allocate, closedGates, gatewayStatus, lockReason, normalize, pathTo, reachable, refund, refundSet } from "./rules";
+import { activeSet, allocate, closedGates, gatewayStatus, lockReason, normalize, pathTo, reachable, refund, refundSet, sigilCost } from "./rules";
 import { renderTemplate, summarize, summarizeByUnit } from "./summary";
 import { buildSearch, termScore } from "./search";
 import { searchUnits, unitBonuses } from "./units";
@@ -96,6 +96,37 @@ describe("gateways", () => {
     const gate2 = "wh3_dlc29_black_pyramid_lock_2_b";
     const path = pathTo(index, activeSet(index, ten), gate2);
     expect(path).toEqual([]); // 50 needed before Gateway II
+  });
+
+  it("doesn't count sigils allocated behind a gateway towards it (Tides of the Abyss case)", () => {
+    // The shortest way to Tides of the Abyss runs through Gateway II, although the spot after it can also be reached
+    // the long way round. Sigils past the gateway must not count as "before" it.
+    const TIDES = "wh3_dlc29_black_pyramid_lore_of_deep_1";
+    const GATE_2C = "wh3_dlc29_black_pyramid_lock_2_c";
+    const prev = new Map<string, string | null>([[index.start, null]]);
+    const queue = [index.start];
+    while (queue.length) {
+      const k = queue.shift()!;
+      for (const n of index.adjacency.get(k)!) if (!prev.has(n)) prev.set(n, k), queue.push(n);
+    }
+    const path: string[] = [];
+    for (let k: string | null = TIDES; k; k = prev.get(k)!) path.unshift(k);
+    expect(path).toContain(GATE_2C);
+    const beforeGate = path.slice(0, path.indexOf(GATE_2C));
+    const status = gatewayStatus(index, new Set(path))[1];
+    expect(status.used).toBe(true);
+    expect(status.before).toBe(sigilCost(index, beforeGate)); // the two sigils behind Gateway II are not counted
+  });
+
+  it("never lets a click through a locked gateway by counting what lies behind it", () => {
+    // Grow a build one sigil at a time; at every step, any path the planner offers must leave every used gateway open.
+    let build: string[] = [];
+    for (const n of data.nodes) {
+      const next = allocate(index, build, n.key);
+      for (const g of gatewayStatus(index, activeSet(index, next))) if (g.used) expect(g.open).toBe(true);
+      if (next.length - build.length === 1) build = next;
+      if (build.length > 120) break;
+    }
   });
 
   it("refunding below a threshold also refunds the gateway and what lies behind it", () => {

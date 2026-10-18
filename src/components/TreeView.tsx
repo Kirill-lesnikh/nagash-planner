@@ -28,6 +28,8 @@ interface View {
 
 interface Props {
   index: TreeIndex;
+  /** Width covered by the floating side panel; fitting keeps the tree clear of it. */
+  rightInset: number;
   active: Set<string>;
   /** Unallocated gateways that are still locked. */
   closed: Set<string>;
@@ -42,7 +44,9 @@ interface Props {
   onClick: (key: string) => void;
 }
 
-export function TreeView({ index, active, closed, locked, previewAdd, previewRemove, matches, highlight, focus, onHover, onClick }: Props) {
+export function TreeView({ index, rightInset, active, closed, locked, previewAdd, previewRemove, matches, highlight, focus, onHover, onClick }: Props) {
+  const insetRef = useRef(rightInset);
+  insetRef.current = rightInset;
   const svgRef = useRef<SVGSVGElement>(null);
   const [view, setView] = useState<View | null>(null);
   const viewRef = useRef(view);
@@ -50,17 +54,26 @@ export function TreeView({ index, active, closed, locked, previewAdd, previewRem
   const drag = useRef<{ x: number; y: number; tx: number; ty: number; moved: boolean } | null>(null);
   const minK = useRef(0.1);
 
+  // Fit the whole tree into the part of the window not covered by the side panel.
   const fit = useCallback(() => {
     const r = svgRef.current!.getBoundingClientRect();
-    const k = Math.min(r.width / WIDTH, r.height / HEIGHT);
+    const w = Math.max(200, r.width - insetRef.current);
+    const k = Math.min(w / WIDTH, r.height / HEIGHT);
     minK.current = k * 0.8;
-    setView({ k, tx: (r.width - WIDTH * k) / 2, ty: (r.height - HEIGHT * k) / 2 });
+    setView({ k, tx: (w - WIDTH * k) / 2, ty: (r.height - HEIGHT * k) / 2 });
   }, []);
 
   useLayoutEffect(() => {
     fit();
+    // Keep the same point of the tree in the middle when the area resizes (e.g. the side panel is hidden or shown).
+    let size = svgRef.current!.getBoundingClientRect();
     const ro = new ResizeObserver(() => {
+      const next = svgRef.current!.getBoundingClientRect();
+      const dw = next.width - size.width;
+      const dh = next.height - size.height;
+      size = next;
       if (!viewRef.current) fit();
+      else if (dw || dh) setView((v) => v && { ...v, tx: v.tx + dw / 2, ty: v.ty + dh / 2 });
     });
     ro.observe(svgRef.current!);
     return () => ro.disconnect();

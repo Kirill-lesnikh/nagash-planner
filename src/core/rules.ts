@@ -23,17 +23,28 @@ export interface GatewayTierStatus {
 }
 
 /**
- * In game, a gateway unlocks once enough sigils are empowered "before this point":
- * here, allocated sigils in segments lower than the gateway's tier (earlier gateways included).
+ * In game, a gateway unlocks once enough sigils are empowered "before this point".
+ * For a gateway of tier t that means: allocated sigils reachable from the start through allocated sigils without
+ * passing through any gateway of tier >= t (earlier gateways included). Counting on the allocation itself, not on
+ * the whole graph, matters: sigils allocated *behind* a gateway don't count towards it even when the same spot could
+ * also be reached by a longer route that avoids the gateway.
  */
 export function gatewayStatus(index: TreeIndex, active: Set<string>): GatewayTierStatus[] {
   return index.thresholds.map((threshold, i) => {
     const tier = i + 1;
-    let before = 0;
     let used = false;
-    for (const key of active) {
-      if (index.segment.get(key)! < tier) before += index.byKey.get(key)!.cost;
-      if (index.gateways.get(key)?.tier === tier) used = true;
+    for (const key of active) if (index.gateways.get(key)?.tier === tier) used = true;
+    let before = 0;
+    const seen = new Set([index.start]);
+    const queue = [index.start];
+    while (queue.length) {
+      const key = queue.shift()!;
+      before += index.byKey.get(key)!.cost;
+      for (const next of index.adjacency.get(key)!) {
+        if (seen.has(next) || !active.has(next) || (index.gateways.get(next)?.tier ?? 0) >= tier) continue;
+        seen.add(next);
+        queue.push(next);
+      }
     }
     return { tier, threshold, before, open: before >= threshold, used };
   });

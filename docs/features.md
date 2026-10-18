@@ -26,6 +26,7 @@ Priorities:
 | Node tiers | Connector dot, small, notable, gateway and start, drawn at different sizes, as in game. |
 | Edges | Drawn between nodes. Allocated paths are highlighted. |
 | Tooltip | On hover: name, icon, effect lines, cost, tier/cluster. For an unallocated node, also **"N sigils to reach"** (path cost). |
+| Hideable panel | The right panel **floats over the tree**, so showing or hiding it moves nothing underneath. A tab-shaped button on its left edge, vertically centred, slides it out; the same button (now at the window edge) brings it back. Fitting the tree (on load, or on double-click) leaves room for the open panel. Remembered per browser. On narrow screens the panel is always shown below the tree. |
 
 ## 2. Allocation (P0)
 

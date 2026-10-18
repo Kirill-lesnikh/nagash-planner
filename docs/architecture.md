@@ -66,7 +66,10 @@ nagash_calc/
 - **Refund** (`rules.refundSet`): remove the node, then `prune`. Prune keeps only what is connected to the start, drops
   every gateway whose tier now falls short, and repeats until stable. Saved and shared builds go through the same
   `normalize` on load.
-- **Gateway status**: the Sigils (cost) in segments below tier t are counted against threshold t. "Open" means count ≥ threshold.
+- **Gateway status** (`rules.gatewayStatus`): for tier t, a BFS from the start over *allocated* nodes that never enters a
+  gateway of tier ≥ t; the cost of what it reaches is counted against threshold t. "Open" means count ≥ threshold.
+  Static segments are **not** used for this. Nodes behind a gateway can have a lower segment (reachable the long way
+  round), and counting them let a click pass through a locked gateway (the Tides of the Abyss bug).
 - **Summaries** (`summary.ts`):
   - **By section:** effects grouped by the node's supercluster (plus "Pathways to Eternity" and "Gateways"). Identical
     effect + scope are summed and re-rendered from `effectTemplates`.
@@ -93,5 +96,10 @@ nagash_calc/
 - Closed gateways get `chained_lock.png` on top. Nodes behind a closed gateway get the CSS class `locked` (dimmed). While
   searching, non-matching nodes dim and matches get a gold ring.
 - `NodeView` is `memo`ised on its props, so hovering recomputes the preview sets but only re-renders the nodes that change.
+- Layout: the tree pane fills the window (`position: absolute; inset: 0`). The side panel `.sidebar-wrap` floats over its
+  right 400 px and slides out with `transform: translateX(100%)` when collapsed. The toggle button sits at `left: -22px`, so
+  it stays visible at the window edge. The tree never resizes when toggling, so nothing moves. `TreeView`'s `fit()` takes
+  a `rightInset` (400 when the panel is open) so the fitted tree isn't hidden under the panel. On window resize the view
+  shifts by half the size change to keep its centre. Narrow screens (≤ 800 px) stack the panel below the tree instead.
 - Tooltip opens next to the cursor on the tree. From sidebar rows it's anchored to the row's left edge
   (`Hover.side = "left"`) so it never covers the list.

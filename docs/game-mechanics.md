@@ -57,7 +57,13 @@ All of these come from game data or in-game text. **[G]**
    | 2 | Gateway II (50) | 432 |
    | 3 | Gateway III (100) | 516 |
 
-   **Planner model [C]:** a gateway of tier *k* can be empowered when the number of empowered sigils in segments *before* it (0..k−1, gateway nodes included) is at least its threshold. A change is invalid if it leaves any empowered gateway's earlier segments below its threshold. The planner enforces this: locked gateways block allocation, and refunds cascade through gateways that fall short.
+   **Planner model [C]:** a gateway of tier *k* can be empowered when the sigils "before" it number at least its
+   threshold. "Before" means: empowered sigils reachable from the start **through empowered sigils**, without passing
+   through any gateway of tier ≥ *k* (earlier gateways included). This is counted on the actual allocation, not on the
+   static segments. Some spots behind a gateway can also be reached by a longer route around it (e.g. *Tides of the
+   Abyss*: its shortest path crosses Gateway II, but it is in segment 1), and sigils allocated *through* the gateway
+   must not count towards it. A change is invalid if it leaves any empowered gateway short. The planner enforces this:
+   locked gateways block allocation (paths go around them), and refunds cascade through gateways that fall short.
 7. **Disempowering (re-allocation).** You can disempower **individual Sigils** or **all active Sigils** at once. It **costs Dark Magic** (the faction's gold). You cannot confirm without enough Dark Magic, or if the change would leave a segment without enough sigils to keep a required gateway unlocked. **[G]**
    - **[?]** The Dark Magic refund formula (it is not in the initiative tables; probably script/code). *The planner deliberately ignores refund costs (user decision), so this doesn't block anything.*
    - **[?]** Does disempowering a node strand its now-disconnected descendants? The planner should simply require the result to stay connected.

@@ -37,16 +37,71 @@ body {
   color: var(--muted);
 }
 
+/* The tree always fills the window; the side panel floats over it, so showing/hiding it moves nothing underneath. */
 .app {
-  display: grid;
-  grid-template-columns: 1fr 400px;
+  position: relative;
   height: 100%;
+  overflow: hidden;
+}
+
+.tree-pane {
+  position: absolute;
+  inset: 0;
+}
+
+/* ---------- collapsible side panel ---------- */
+
+.sidebar-wrap {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 4;
+  width: 400px;
+  transition: transform 0.2s ease;
+}
+
+/* Slide out to the right; the toggle (left: -22px) stays visible at the window edge. */
+.sidebar-wrap.collapsed {
+  transform: translateX(100%);
+}
+
+.sidebar-inner {
+  height: 100%;
+  overflow: hidden;
+}
+
+.sidebar-inner > .sidebar {
+  height: 100%;
+}
+
+/* Tab on the panel's left edge, vertically centred; stays at the window edge when the panel is hidden. */
+.sidebar-toggle {
+  position: absolute;
+  top: 50%;
+  left: -22px;
+  z-index: 5;
+  width: 22px;
+  height: 64px;
+  padding: 0;
+  transform: translateY(-50%);
+  border: 1px solid var(--line);
+  border-right: none;
+  border-radius: 6px 0 0 6px;
+  background: var(--panel);
+  color: var(--gold);
+  font-size: 18px;
+  line-height: 1;
+}
+
+.sidebar-toggle:hover:not(:disabled) {
+  background: var(--panel-2);
+  border-color: var(--gold);
 }
 
 /* ---------- tree ---------- */
 
 .tree-pane {
-  position: relative;
   overflow: hidden;
   background: #050607;
 }
@@ -486,6 +541,24 @@ ul.results .dot::before {
     grid-template-columns: 1fr;
     grid-template-rows: 60vh 1fr;
   }
+  .app {
+    display: grid;
+    grid-template-rows: 60vh 1fr;
+  }
+  .tree-pane {
+    position: relative;
+  }
+  .sidebar-wrap,
+  .sidebar-wrap.collapsed {
+    position: static;
+    width: auto;
+    transform: none;
+    min-height: 0;
+  }
+  .sidebar-toggle {
+    display: none;
+  }
+
   .sidebar {
     border-left: none;
     border-top: 1px solid var(--line);
