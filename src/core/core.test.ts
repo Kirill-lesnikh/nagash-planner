@@ -338,6 +338,18 @@ describe("unit lookup", () => {
     expect(krell.length).toBe(expected.length);
   });
 
+  it("includes character stats and attributes scoped to a named character", () => {
+    // These have no unit set link in the game files; the "(Nagash)" scope alone says who gets them.
+    const nagash = unitBonuses(index, "wh3_dlc29_vmp_cha_nagash");
+    const form = nagash.find((b) => b.node.name === "The Indestructible Form");
+    expect(form?.lines.map((l) => l.text)).toEqual(
+      expect.arrayContaining(["Attribute: 360 Missile Block", "Attribute: Ballistic Plating", "Missile block chance: +25%"]),
+    );
+    expect(nagash.some((b) => b.node.tier === "connector")).toBe(false);
+    // and they stay off everyone else
+    expect(unitBonuses(index, "wh2_dlc09_tmb_cha_arkhan_0").some((b) => b.node.name === "The Indestructible Form")).toBe(false);
+  });
+
   it("words bonuses for the unit and includes Grave Call unlocks", () => {
     const horseArchers = unitBonuses(index, "wh2_dlc09_tmb_cav_skeleton_horsemen_archers_0");
     const lines = horseArchers.flatMap((b) => b.lines.map((l) => l.text));

@@ -742,7 +742,8 @@
      "text": "Effect range: +500% for \"The Curse\"",
      "value": 500,
      "scope": "(Arkhan the Black)",
-     "icon": "assets/effects/general_ability.png"
+     "icon": "assets/effects/general_ability.png",
+     "target": "wh3_dlc29_effect_ability_range_the_curse@faction_to_character_arkhan"
     }
    ]
   },
@@ -762,7 +763,8 @@
      "text": "Cooldown: -20% to \"Liber Mortis\"",
      "value": -20,
      "scope": "(Arkhan the Black)",
-     "icon": "assets/effects/magic_cooldown_character.png"
+     "icon": "assets/effects/magic_cooldown_character.png",
+     "target": "wh3_dlc29_effect_ability_recharge_liber_mortis@faction_to_character_arkhan"
     },
     {
      "key": "wh3_dlc29_effect_ability_uses_liber_mortis",
@@ -790,7 +792,8 @@
      "text": "Arkhan the Black gains Infernal Legion units within his army each time the Ritual of Undeath is cast",
      "value": 1,
      "scope": "(Arkhan the Black)",
-     "icon": "assets/effects/wh3_dlc29_infernal_legion.png"
+     "icon": "assets/effects/wh3_dlc29_infernal_legion.png",
+     "target": "wh3_dlc29_effect_enable_arkhan_transported_army_dummy@faction_to_character_arkhan"
     },
     {
      "key": "wh3_dlc29_effect_ritual_cost_ritual_of_undeath",
@@ -1034,14 +1037,16 @@
      "text": "Books of Nagash Ability number of uses: +1 for \"Doom & Darkness\"",
      "value": 1,
      "scope": "(Nagash)",
-     "icon": "assets/effects/wizard.png"
+     "icon": "assets/effects/wizard.png",
+     "target": "wh3_dlc29_effect_ability_uses_nag_death_passive_doom_and_darkness@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_dlc29_effect_ability_uses_nag_death_passive_spirit_leech",
      "text": "Books of Nagash Ability number of uses: +2 for \"Spirit Leech\"",
      "value": 2,
      "scope": "(Nagash)",
-     "icon": "assets/effects/wizard.png"
+     "icon": "assets/effects/wizard.png",
+     "target": "wh3_dlc29_effect_ability_uses_nag_death_passive_spirit_leech@faction_to_faction_leader_alt_nagash"
     }
    ]
   },
@@ -1061,7 +1066,8 @@
      "text": "Spell intensity: +20%",
      "value": 20,
      "scope": "(Nagash)",
-     "icon": "assets/effects/wizard.png"
+     "icon": "assets/effects/wizard.png",
+     "target": "wh3_main_effect_spell_mastery@faction_to_faction_leader_alt_nagash"
     }
    ]
   },
@@ -1131,14 +1137,16 @@
      "text": "Books of Nagash Ability number of uses: +2 for \"Light of Battle\"",
      "value": 2,
      "scope": "(Nagash)",
-     "icon": "assets/effects/wizard.png"
+     "icon": "assets/effects/wizard.png",
+     "target": "wh3_dlc29_effect_ability_uses_nag_light_passive_light_of_battle@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_dlc29_effect_ability_uses_nag_light_passive_shems_burning_gaze",
      "text": "Books of Nagash Ability number of uses: +1 for \"Shem's Burning Gaze\"",
      "value": 1,
      "scope": "(Nagash)",
-     "icon": "assets/effects/wizard.png"
+     "icon": "assets/effects/wizard.png",
+     "target": "wh3_dlc29_effect_ability_uses_nag_light_passive_shems_burning_gaze@faction_to_faction_leader_alt_nagash"
     }
    ]
   },
@@ -1158,7 +1166,8 @@
      "text": "Spell intensity: +20%",
      "value": 20,
      "scope": "(Nagash)",
-     "icon": "assets/effects/wizard.png"
+     "icon": "assets/effects/wizard.png",
+     "target": "wh3_main_effect_spell_mastery@faction_to_faction_leader_alt_nagash"
     }
    ]
   },
@@ -1228,14 +1237,16 @@
      "text": "Books of Nagash Ability number of uses: +2 for \"Neru's Incantation of Protection\"",
      "value": 2,
      "scope": "(Nagash)",
-     "icon": "assets/effects/wizard.png"
+     "icon": "assets/effects/wizard.png",
+     "target": "wh3_dlc29_effect_ability_uses_nag_nehekhara_passive_protection@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_dlc29_effect_ability_uses_nag_nehekhara_passive_vengeance",
      "text": "Books of Nagash Ability number of uses: +1 for \"Usirian's Incantation of Vengeance\"",
      "value": 1,
      "scope": "(Nagash)",
-     "icon": "assets/effects/wizard.png"
+     "icon": "assets/effects/wizard.png",
+     "target": "wh3_dlc29_effect_ability_uses_nag_nehekhara_passive_vengeance@faction_to_faction_leader_alt_nagash"
     }
    ]
   },
@@ -1255,7 +1266,8 @@
      "text": "Spell intensity: +20%",
      "value": 20,
      "scope": "(Nagash)",
-     "icon": "assets/effects/wizard.png"
+     "icon": "assets/effects/wizard.png",
+     "target": "wh3_main_effect_spell_mastery@faction_to_faction_leader_alt_nagash"
     }
    ]
   },
@@ -1325,14 +1337,16 @@
      "text": "Books of Nagash Ability number of uses: +2 for \"Curse of Years\"",
      "value": 2,
      "scope": "(Nagash)",
-     "icon": "assets/effects/wizard.png"
+     "icon": "assets/effects/wizard.png",
+     "target": "wh3_dlc29_effect_ability_uses_nag_vampire_passive_curse_of_years@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_dlc29_effect_ability_uses_nag_vampire_passive_gaze_of_nagash",
      "text": "Books of Nagash Ability number of uses: +1 for \"Gaze of Nagash\"",
      "value": 1,
      "scope": "(Nagash)",
-     "icon": "assets/effects/wizard.png"
+     "icon": "assets/effects/wizard.png",
+     "target": "wh3_dlc29_effect_ability_uses_nag_vampire_passive_gaze_of_nagash@faction_to_faction_leader_alt_nagash"
     }
    ]
   },
@@ -1352,7 +1366,8 @@
      "text": "Spell intensity: +20%",
      "value": 20,
      "scope": "(Nagash)",
-     "icon": "assets/effects/wizard.png"
+     "icon": "assets/effects/wizard.png",
+     "target": "wh3_main_effect_spell_mastery@faction_to_faction_leader_alt_nagash"
     }
    ]
   },
@@ -2573,7 +2588,8 @@
      "text": "Cooldown: -25% to \"Doom Lord\"",
      "value": -25,
      "scope": "(Dieter Helsnicht)",
-     "icon": "assets/effects/general_ability.png"
+     "icon": "assets/effects/general_ability.png",
+     "target": "wh3_dlc29_effect_ability_cooldown_doom_lord@faction_to_character_dieter"
     },
     {
      "key": "wh3_dlc29_effect_ability_duration_doom_lord",
@@ -2609,7 +2625,8 @@
      "text": "Spell intensity: +20%",
      "value": 20,
      "scope": "(Dieter Helsnicht)",
-     "icon": "assets/effects/wizard.png"
+     "icon": "assets/effects/wizard.png",
+     "target": "wh3_main_effect_spell_mastery@faction_to_character_dieter"
     }
    ]
   },
@@ -5974,7 +5991,8 @@
      "key": "wh3_dlc29_effect_ability_enable_bound_hand_of_dust",
      "text": "Bound spell: \"The Hand of Dust\"",
      "value": 1,
-     "scope": "(Mannfred von Carstein)"
+     "scope": "(Mannfred von Carstein)",
+     "target": "wh3_dlc29_effect_ability_enable_bound_hand_of_dust@faction_to_character_mannfred"
     },
     {
      "key": "wh_dlc29_effect_character_stat_magic_resistance_mannfred",
@@ -6030,7 +6048,8 @@
      "key": "wh3_dlc29_effect_ability_enable_bound_abyssal_swarm",
      "text": "Bound spell: \"The Abyssal Swarm\"",
      "value": 1,
-     "scope": "(Mannfred von Carstein)"
+     "scope": "(Mannfred von Carstein)",
+     "target": "wh3_dlc29_effect_ability_enable_bound_abyssal_swarm@faction_to_character_mannfred"
     },
     {
      "key": "wh3_dlc29_effect_spell_mastery_mannfred",
@@ -6565,7 +6584,8 @@
      "text": "Armour: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/armour.png"
+     "icon": "assets/effects/armour.png",
+     "target": "wh_main_effect_force_stat_armour@faction_to_faction_leader_alt_nagash"
     }
    ]
   },
@@ -6585,7 +6605,8 @@
      "text": "Winds of Magic cost: -10% for overcast spells from the Lore of Undeath",
      "value": -10,
      "scope": "(Nagash)",
-     "icon": "assets/effects/magic_character.png"
+     "icon": "assets/effects/magic_character.png",
+     "target": "wh3_dlc29_effect_magic_undeath_reduce_wom_cost_all_overcast@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh_main_effect_character_stat_miscast",
@@ -6613,7 +6634,8 @@
      "text": "Attribute: Immune to Flanking",
      "value": 1,
      "scope": "(Nagash)",
-     "icon": "assets/effects/flanking_immune.png"
+     "icon": "assets/effects/flanking_immune.png",
+     "target": "wh3_dlc26_effect_attribute_enable_immune_to_flanking@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh_main_effect_character_stat_melee_defence",
@@ -6699,7 +6721,8 @@
      "text": "Attribute: Unyielding Assault",
      "value": 1,
      "scope": "(Nagash)",
-     "icon": "assets/effects/attribute_unyielding_assault.png"
+     "icon": "assets/effects/attribute_unyielding_assault.png",
+     "target": "wh3_main_effect_attribute_unyielding_assault@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh_main_effect_character_stat_melee_attack",
@@ -7002,14 +7025,16 @@
      "text": "Ability: \"Summon Archai\"",
      "value": 1,
      "scope": "(Nagash)",
-     "icon": "assets/effects/general_ability.png"
+     "icon": "assets/effects/general_ability.png",
+     "target": "wh3_dlc29_effect_ability_enable_summon_archai@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_dlc29_effect_ability_uses_summon_morghast_archai",
      "text": "Ability number of uses: +1 for \"Summon Archai\"",
      "value": 1,
      "scope": "(Nagash)",
-     "icon": "assets/effects/general_ability.png"
+     "icon": "assets/effects/general_ability.png",
+     "target": "wh3_dlc29_effect_ability_uses_summon_morghast_archai@faction_to_faction_leader_alt_nagash"
     }
    ]
   },
@@ -7029,7 +7054,8 @@
      "text": "All Books of Nagash Ability number of uses: +1",
      "value": 1,
      "scope": "(Nagash)",
-     "icon": "assets/effects/books_of_nagash.png"
+     "icon": "assets/effects/books_of_nagash.png",
+     "target": "wh3_dlc29_effect_ability_uses_nag_books_of_nagash_all@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_other",
@@ -7092,7 +7118,8 @@
      "text": "Armour: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/armour.png"
+     "icon": "assets/effects/armour.png",
+     "target": "wh_main_effect_force_stat_armour@faction_to_faction_leader_alt_nagash"
     }
    ]
   },
@@ -7133,21 +7160,24 @@
      "text": "Attribute: 360 Missile Block",
      "value": 1,
      "scope": "(Nagash)",
-     "icon": "assets/effects/block_character.png"
+     "icon": "assets/effects/block_character.png",
+     "target": "wh3_dlc24_effect_attribute_enable_360_missile_block@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_dlc29_effect_attribute_enable_ballistic_plating",
      "text": "Attribute: Ballistic Plating",
      "value": 1,
      "scope": "(Nagash)",
-     "icon": "assets/effects/attribute_ballistic_plating.png"
+     "icon": "assets/effects/attribute_ballistic_plating.png",
+     "target": "wh3_dlc29_effect_attribute_enable_ballistic_plating@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh_main_effect_character_stat_missile_block",
      "text": "Missile block chance: +25%",
      "value": 25,
      "scope": "(Nagash)",
-     "icon": "assets/effects/block_character.png"
+     "icon": "assets/effects/block_character.png",
+     "target": "wh_main_effect_character_stat_missile_block@faction_to_faction_leader_alt_nagash"
     }
    ]
   },
@@ -7196,14 +7226,16 @@
      "text": "Passive ability: \"Wayfarer\"",
      "value": 1,
      "scope": "(Nagash)",
-     "icon": "assets/effects/general_ability.png"
+     "icon": "assets/effects/general_ability.png",
+     "target": "wh2_dlc17_effect_ability_enable_wayfarer@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_character_stat_unit_mass_percentage_mod",
      "text": "Unit mass: +10%",
      "value": 10,
      "scope": "(Nagash)",
-     "icon": "assets/effects/mass_character.png"
+     "icon": "assets/effects/mass_character.png",
+     "target": "wh3_main_effect_character_stat_unit_mass_percentage_mod@faction_to_faction_leader_alt_nagash"
     }
    ]
   },
@@ -7223,7 +7255,8 @@
      "text": "Replenishes 40% campaign movement range after winning a battle",
      "value": 40,
      "scope": "(Nagash)",
-     "icon": "assets/effects/campaign_movement.png"
+     "icon": "assets/effects/campaign_movement.png",
+     "target": "wh3_main_effect_force_all_campaign_movement_range_post_battle_win@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh_main_effect_force_all_campaign_movement_range",
@@ -7309,14 +7342,16 @@
      "text": "Battle healing cap: +25%",
      "value": 25,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_dlc29_effect_stat_incoming_healing_mod_debuff",
      "text": "Incoming Healing Modifier: +25%",
      "value": 25,
      "scope": "(Nagash)",
-     "icon": "assets/effects/stat_healing_received.png"
+     "icon": "assets/effects/stat_healing_received.png",
+     "target": "wh3_dlc29_effect_stat_incoming_healing_mod_debuff@faction_to_faction_leader_alt_nagash"
     }
    ]
   },
@@ -7483,14 +7518,16 @@
      "text": "Attacks cause \"Spirit Leech\" effect, draining hit points",
      "value": 1,
      "scope": "(Nagash)",
-     "icon": "assets/effects/magic_character.png"
+     "icon": "assets/effects/magic_character.png",
+     "target": "wh2_dlc14_effect_character_stat_enable_spirit_leech_attacks@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_dlc29_effect_magic_undeath_reduce_wom_cost_nag_nagash",
      "text": "Winds of Magic cost: -5% for Lore of Undeath",
      "value": -5,
      "scope": "(Nagash)",
-     "icon": "assets/effects/magic_character.png"
+     "icon": "assets/effects/magic_character.png",
+     "target": "wh3_dlc29_effect_magic_undeath_reduce_wom_cost_nag_nagash@faction_to_faction_leader_alt_nagash"
     }
    ]
   },
@@ -7528,7 +7565,8 @@
      "key": "wh3_dlc29_effect_force_nag_shambling_horde_dummy",
      "text": "Spawn a temporary Shambling Horde army at selected region whenever the Ritual of Undeath is cast",
      "value": 1,
-     "icon": "assets/effects/wh3_dlc29_shambling_horde.png"
+     "icon": "assets/effects/wh3_dlc29_shambling_horde.png",
+     "target": "wh3_dlc29_effect_force_nag_shambling_horde_dummy@faction_to_faction_leader_unseen"
     },
     {
      "key": "wh3_dlc29_effect_ritual_cost_ritual_of_undeath",
@@ -9347,14 +9385,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -9380,14 +9420,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -9413,14 +9455,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -9446,14 +9490,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -9479,14 +9525,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -9512,14 +9560,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -9545,14 +9595,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -9578,14 +9630,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -9611,14 +9665,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -9644,14 +9700,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -9677,14 +9735,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -9710,14 +9770,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -9743,14 +9805,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -9776,14 +9840,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -9809,14 +9875,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -9842,14 +9910,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -9875,14 +9945,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -9908,14 +9980,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -9941,14 +10015,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -9974,14 +10050,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -10007,14 +10085,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -10040,14 +10120,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -10073,14 +10155,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -10106,14 +10190,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -10139,14 +10225,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -10172,14 +10260,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -10205,14 +10295,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -10238,14 +10330,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -10271,14 +10365,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -10304,14 +10400,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -10337,14 +10435,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -10370,14 +10470,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -10403,14 +10505,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -10436,14 +10540,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -10469,14 +10575,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -10502,14 +10610,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -10535,14 +10645,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -10568,14 +10680,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -10601,14 +10715,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -10634,14 +10750,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -10667,14 +10785,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -10700,14 +10820,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -10733,14 +10855,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -10766,14 +10890,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -10799,14 +10925,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -10832,14 +10960,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -10865,14 +10995,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -10898,14 +11030,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -10931,14 +11065,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -10964,14 +11100,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -10997,14 +11135,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -11030,14 +11170,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -11063,14 +11205,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -11096,14 +11240,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -11129,14 +11275,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -11162,14 +11310,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -11195,14 +11345,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -11228,14 +11380,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -11261,14 +11415,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -11294,14 +11450,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -11327,14 +11485,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -11360,14 +11520,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -11393,14 +11555,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -11426,14 +11590,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -11459,14 +11625,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -11492,14 +11660,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -11525,14 +11695,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -11558,14 +11730,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -11591,14 +11765,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -11624,14 +11800,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -11657,14 +11835,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -11690,14 +11870,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -11723,14 +11905,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -11756,14 +11940,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -11789,14 +11975,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -11822,14 +12010,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -11855,14 +12045,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -11888,14 +12080,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -11921,14 +12115,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -11954,14 +12150,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -11987,14 +12185,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -12020,14 +12220,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -12053,14 +12255,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -12086,14 +12290,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -12119,14 +12325,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -12152,14 +12360,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -12185,14 +12395,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -12218,14 +12430,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -12251,14 +12465,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -12284,14 +12500,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -12317,14 +12535,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -12350,14 +12570,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -12383,14 +12605,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -12416,14 +12640,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -12449,14 +12675,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -12482,14 +12710,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -12515,14 +12745,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -12548,14 +12780,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -12581,14 +12815,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -12614,14 +12850,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -12647,14 +12885,16 @@
      "text": "Battle healing cap: +3%",
      "value": 3,
      "scope": "(Nagash)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_battle_barrier_health_add",
      "text": "Barrier hit points: +15",
      "value": 15,
      "scope": "(Nagash)",
-     "icon": "assets/effects/barrier.png"
+     "icon": "assets/effects/barrier.png",
+     "target": "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash"
     },
     {
      "key": "wh3_main_effect_winds_of_magic_pool_cap",
@@ -13420,7 +13660,8 @@
      "text": "Battle healing cap: +20%",
      "value": 20,
      "scope": "(Vlad von Carstein)",
-     "icon": "assets/effects/health_character.png"
+     "icon": "assets/effects/health_character.png",
+     "target": "wh3_dlc20_effect_healing_cap_modifier@faction_to_character_vlad"
     },
     {
      "key": "wh3_dlc29_effect_character_stat_mod_ward_save_vlad",
@@ -13806,7 +14047,8 @@
      "text": "Attribute: Devastating Flanker",
      "value": 1,
      "scope": "(Walach Harkon)",
-     "icon": "assets/effects/devastating_flanker.png"
+     "icon": "assets/effects/devastating_flanker.png",
+     "target": "wh3_main_effect_attribute_enable_devestating_flanker@faction_to_character_walach"
     },
     {
      "key": "wh_main_effect_character_stat_charge_bonus_pct_walach",
@@ -18479,6 +18721,9 @@
   "wh_main_effect_character_stat_miscast@faction_to_faction_leader_alt_nagash": [
    "wh3_dlc29_vmp_cha_nagash"
   ],
+  "wh_main_effect_character_stat_missile_block@faction_to_faction_leader_alt_nagash": [
+   "wh3_dlc29_vmp_cha_nagash"
+  ],
   "wh_main_effect_character_stat_physical_resistance@faction_to_character_own_heroes_only": [
    "wh2_dlc09_tmb_cha_liche_priest_death_0",
    "wh2_dlc09_tmb_cha_liche_priest_light_0",
@@ -18887,6 +19132,9 @@
   "wh_main_effect_force_all_campaign_upkeep_nagash": [
    "wh3_dlc29_vmp_cha_nagash"
   ],
+  "wh_main_effect_force_stat_armour@faction_to_faction_leader_alt_nagash": [
+   "wh3_dlc29_vmp_cha_nagash"
+  ],
   "wh_main_effect_force_stat_speed@faction_to_faction_leader_alt_nagash": [
    "wh3_dlc29_vmp_cha_nagash"
   ],
@@ -18919,6 +19167,12 @@
    "wh2_dlc11_cst_cav_deck_droppers_1",
    "wh2_dlc11_cst_cav_deck_droppers_2",
    "wh2_dlc11_cst_cav_deck_droppers_ror_0"
+  ],
+  "wh2_dlc14_effect_character_stat_enable_spirit_leech_attacks@faction_to_faction_leader_alt_nagash": [
+   "wh3_dlc29_vmp_cha_nagash"
+  ],
+  "wh2_dlc17_effect_ability_enable_wayfarer@faction_to_faction_leader_alt_nagash": [
+   "wh3_dlc29_vmp_cha_nagash"
   ],
   "wh2_dlc29_effect_attribute_enable_vanguard_deployment_deck_droppers": [
    "wh2_dlc11_cst_cav_deck_droppers_0",
@@ -18954,6 +19208,15 @@
   "wh2_dlc29_effect_unit_xp_levels_screaming_skull_catapult": [
    "wh2_dlc09_tmb_art_screaming_skull_catapult_0"
   ],
+  "wh3_dlc20_effect_healing_cap_modifier@faction_to_character_vlad": [
+   "wh_dlc04_vmp_cha_vlad_von_carstein_0"
+  ],
+  "wh3_dlc20_effect_healing_cap_modifier@faction_to_faction_leader_alt_nagash": [
+   "wh3_dlc29_vmp_cha_nagash"
+  ],
+  "wh3_dlc24_effect_attribute_enable_360_missile_block@faction_to_faction_leader_alt_nagash": [
+   "wh3_dlc29_vmp_cha_nagash"
+  ],
   "wh3_dlc25_contact_phase_armour_sundering_krell": [
    "wh3_dlc29_vmp_cha_krell"
   ],
@@ -18963,6 +19226,9 @@
    "wh3_dlc29_vmp_cha_krell",
    "wh3_dlc29_vmp_cha_walach_harkon",
    "wh3_dlc29_vmp_cha_walach_harkon_barded_nightmare"
+  ],
+  "wh3_dlc26_effect_attribute_enable_immune_to_flanking@faction_to_faction_leader_alt_nagash": [
+   "wh3_dlc29_vmp_cha_nagash"
   ],
   "wh3_dlc26_effect_force_stat_barrier_magical_vehicles": [
    "wh3_dlc29_vmp_veh_coven_throne",
@@ -19005,6 +19271,10 @@
   "wh3_dlc29_attribute_enable_vanguard_nag_nehekhara": [
    "wh2_dlc09_tmb_cav_nehekhara_horsemen_0"
   ],
+  "wh3_dlc29_effect_ability_cooldown_doom_lord@faction_to_character_dieter": [
+   "wh3_dlc29_vmp_cha_dieter_helsnicht",
+   "wh3_dlc29_vmp_cha_dieter_helsnicht_undead_manticore"
+  ],
   "wh3_dlc29_effect_ability_cooldown_raise_dead_dieter": [
    "wh3_dlc29_vmp_cha_dieter_helsnicht",
    "wh3_dlc29_vmp_cha_dieter_helsnicht_undead_manticore"
@@ -19028,9 +19298,15 @@
   "wh3_dlc29_effect_ability_enable_black_nimbus_upgraded": [
    "wh_main_vmp_veh_black_coach"
   ],
+  "wh3_dlc29_effect_ability_enable_bound_abyssal_swarm@faction_to_character_mannfred": [
+   "wh_main_vmp_cha_mannfred_von_carstein_0"
+  ],
   "wh3_dlc29_effect_ability_enable_bound_fog_of_the_damned_nag_mourngul_haunters": [
    "wh2_dlc11_cst_cha_mourngul_haunter",
    "wh_main_vmp_cha_banshee"
+  ],
+  "wh3_dlc29_effect_ability_enable_bound_hand_of_dust@faction_to_character_mannfred": [
+   "wh_main_vmp_cha_mannfred_von_carstein_0"
   ],
   "wh3_dlc29_effect_ability_enable_dig_in_gunnery_mob": [
    "wh2_dlc11_cst_inf_zombie_gunnery_mob_0",
@@ -19105,6 +19381,9 @@
    "wh2_pro06_tmb_mon_bone_giant_0",
    "wh3_dlc29_tmb_mon_khemric_titan_ror"
   ],
+  "wh3_dlc29_effect_ability_enable_summon_archai@faction_to_faction_leader_alt_nagash": [
+   "wh3_dlc29_vmp_cha_nagash"
+  ],
   "wh3_dlc29_effect_ability_enable_summon_morghast_archai_dieter": [
    "wh3_dlc29_vmp_cha_dieter_helsnicht",
    "wh3_dlc29_vmp_cha_dieter_helsnicht_undead_manticore"
@@ -19135,6 +19414,12 @@
   "wh3_dlc29_effect_ability_range_befalling_curse": [
    "wh2_dlc09_tmb_cha_arkhan_0"
   ],
+  "wh3_dlc29_effect_ability_range_the_curse@faction_to_character_arkhan": [
+   "wh2_dlc09_tmb_cha_arkhan_0"
+  ],
+  "wh3_dlc29_effect_ability_recharge_liber_mortis@faction_to_character_arkhan": [
+   "wh2_dlc09_tmb_cha_arkhan_0"
+  ],
   "wh3_dlc29_effect_ability_regeneration_legendary_lord": [
    "wh2_dlc09_tmb_cha_arkhan_0",
    "wh2_dlc11_cst_cha_luthor_harkon_0",
@@ -19156,6 +19441,33 @@
   "wh3_dlc29_effect_ability_uses_liber_mortis": [
    "wh2_dlc09_tmb_cha_arkhan_0"
   ],
+  "wh3_dlc29_effect_ability_uses_nag_books_of_nagash_all@faction_to_faction_leader_alt_nagash": [
+   "wh3_dlc29_vmp_cha_nagash"
+  ],
+  "wh3_dlc29_effect_ability_uses_nag_death_passive_doom_and_darkness@faction_to_faction_leader_alt_nagash": [
+   "wh3_dlc29_vmp_cha_nagash"
+  ],
+  "wh3_dlc29_effect_ability_uses_nag_death_passive_spirit_leech@faction_to_faction_leader_alt_nagash": [
+   "wh3_dlc29_vmp_cha_nagash"
+  ],
+  "wh3_dlc29_effect_ability_uses_nag_light_passive_light_of_battle@faction_to_faction_leader_alt_nagash": [
+   "wh3_dlc29_vmp_cha_nagash"
+  ],
+  "wh3_dlc29_effect_ability_uses_nag_light_passive_shems_burning_gaze@faction_to_faction_leader_alt_nagash": [
+   "wh3_dlc29_vmp_cha_nagash"
+  ],
+  "wh3_dlc29_effect_ability_uses_nag_nehekhara_passive_protection@faction_to_faction_leader_alt_nagash": [
+   "wh3_dlc29_vmp_cha_nagash"
+  ],
+  "wh3_dlc29_effect_ability_uses_nag_nehekhara_passive_vengeance@faction_to_faction_leader_alt_nagash": [
+   "wh3_dlc29_vmp_cha_nagash"
+  ],
+  "wh3_dlc29_effect_ability_uses_nag_vampire_passive_curse_of_years@faction_to_faction_leader_alt_nagash": [
+   "wh3_dlc29_vmp_cha_nagash"
+  ],
+  "wh3_dlc29_effect_ability_uses_nag_vampire_passive_gaze_of_nagash@faction_to_faction_leader_alt_nagash": [
+   "wh3_dlc29_vmp_cha_nagash"
+  ],
   "wh3_dlc29_effect_ability_uses_okkams_mindrazor_lahmian": [
    "wh3_dlc29_vmp_inf_lahmian_handmaidens_shadow"
   ],
@@ -19164,6 +19476,9 @@
   ],
   "wh3_dlc29_effect_ability_uses_spirit_leech_hierotitan": [
    "wh2_dlc09_tmb_mon_heirotitan_0"
+  ],
+  "wh3_dlc29_effect_ability_uses_summon_morghast_archai@faction_to_faction_leader_alt_nagash": [
+   "wh3_dlc29_vmp_cha_nagash"
   ],
   "wh3_dlc29_effect_armour_cost_nag_monstrous_infantry": [
    "wh2_dlc11_cst_mon_rotting_prometheans_0",
@@ -19204,6 +19519,9 @@
   ],
   "wh3_dlc29_effect_attribute_enable_360_missile_block_rotting_leviathan": [
    "wh2_dlc11_cst_mon_rotting_leviathan_0"
+  ],
+  "wh3_dlc29_effect_attribute_enable_ballistic_plating@faction_to_faction_leader_alt_nagash": [
+   "wh3_dlc29_vmp_cha_nagash"
   ],
   "wh3_dlc29_effect_attribute_enable_causes_terror_knights": [
    "wh3_dlc29_vmp_cav_drakenhof_templars",
@@ -19401,6 +19719,9 @@
   "wh3_dlc29_effect_dead_rise_again_chance_nag_monstrous_infantry": [
    "wh2_dlc11_cst_mon_animated_hulks_0"
   ],
+  "wh3_dlc29_effect_enable_arkhan_transported_army_dummy@faction_to_character_arkhan": [
+   "wh2_dlc09_tmb_cha_arkhan_0"
+  ],
   "wh3_dlc29_effect_enable_bound_spell_raise_dead": [
    "wh3_dlc29_vmp_cha_master_necromancer_undeath",
    "wh3_dlc29_vmp_cha_necromancer_undeath",
@@ -19506,6 +19827,9 @@
    "wh_dlc04_vmp_inf_sternsmen_0",
    "wh_main_vmp_inf_grave_guard_0",
    "wh_main_vmp_inf_grave_guard_1"
+  ],
+  "wh3_dlc29_effect_force_nag_shambling_horde_dummy@faction_to_faction_leader_unseen": [
+   "wh3_dlc29_vmp_cha_nagash"
   ],
   "wh3_dlc29_effect_force_recruit_cost_nag_archer_tmb_bow": [
    "wh2_dlc09_tmb_cav_skeleton_horsemen_archers_0",
@@ -21705,6 +22029,12 @@
   "wh3_dlc29_effect_lesser_noxious_disintegration_monstrous_infantry": [
    "wh2_dlc11_cst_mon_animated_hulks_0"
   ],
+  "wh3_dlc29_effect_magic_undeath_reduce_wom_cost_all_overcast@faction_to_faction_leader_alt_nagash": [
+   "wh3_dlc29_vmp_cha_nagash"
+  ],
+  "wh3_dlc29_effect_magic_undeath_reduce_wom_cost_nag_nagash@faction_to_faction_leader_alt_nagash": [
+   "wh3_dlc29_vmp_cha_nagash"
+  ],
   "wh3_dlc29_effect_melee_attack_nag_undead_monster_monstrous": [
    "wh2_dlc09_tmb_mon_carrion_0",
    "wh2_dlc11_cst_mon_animated_hulks_0",
@@ -22653,6 +22983,9 @@
    "wh_dlc04_vmp_veh_mortis_engine_0",
    "wh_main_vmp_veh_black_coach"
   ],
+  "wh3_dlc29_effect_stat_incoming_healing_mod_debuff@faction_to_faction_leader_alt_nagash": [
+   "wh3_dlc29_vmp_cha_nagash"
+  ],
   "wh3_dlc29_effect_stat_mass_nag_melee_zombies": [
    "wh2_dlc11_cst_inf_zombie_deckhands_mob_0",
    "wh2_dlc11_cst_inf_zombie_deckhands_mob_1",
@@ -23107,9 +23440,32 @@
   "wh3_main_effect_ability_num_uses_pestilential_breath": [
    "wh3_dlc29_vmp_mon_zombie_dragon"
   ],
+  "wh3_main_effect_attribute_enable_devestating_flanker@faction_to_character_walach": [
+   "wh3_dlc29_vmp_cha_walach_harkon",
+   "wh3_dlc29_vmp_cha_walach_harkon_barded_nightmare"
+  ],
+  "wh3_main_effect_attribute_unyielding_assault@faction_to_faction_leader_alt_nagash": [
+   "wh3_dlc29_vmp_cha_nagash"
+  ],
+  "wh3_main_effect_battle_barrier_health_add@faction_to_faction_leader_alt_nagash": [
+   "wh3_dlc29_vmp_cha_nagash"
+  ],
+  "wh3_main_effect_character_stat_unit_mass_percentage_mod@faction_to_faction_leader_alt_nagash": [
+   "wh3_dlc29_vmp_cha_nagash"
+  ],
+  "wh3_main_effect_force_all_campaign_movement_range_post_battle_win@faction_to_faction_leader_alt_nagash": [
+   "wh3_dlc29_vmp_cha_nagash"
+  ],
   "wh3_main_effect_force_stat_explosive_damage_tmb_artillery": [
    "wh2_dlc09_tmb_art_casket_of_souls_0",
    "wh2_dlc09_tmb_art_screaming_skull_catapult_0"
+  ],
+  "wh3_main_effect_spell_mastery@faction_to_character_dieter": [
+   "wh3_dlc29_vmp_cha_dieter_helsnicht",
+   "wh3_dlc29_vmp_cha_dieter_helsnicht_undead_manticore"
+  ],
+  "wh3_main_effect_spell_mastery@faction_to_faction_leader_alt_nagash": [
+   "wh3_dlc29_vmp_cha_nagash"
   ]
  },
  "unitEffectTemplates": {
@@ -23123,6 +23479,7 @@
   "wh_main_effect_character_stat_melee_attack": "Melee attack: %+n",
   "wh_main_effect_character_stat_melee_defence": "Melee defence: %+n",
   "wh_main_effect_character_stat_miscast": "Miscast base chance: %+n%",
+  "wh_main_effect_character_stat_missile_block": "Missile block chance: %+n%",
   "wh_main_effect_character_stat_physical_resistance": "Physical resistance: %n%",
   "wh_main_effect_character_stat_range": "Range: %+n%",
   "wh_main_effect_character_stat_speed": "Speed: %+n%",
@@ -23131,6 +23488,7 @@
   "wh_main_effect_force_all_campaign_experience_base_all": "Recruit rank: %+n",
   "wh_main_effect_force_all_campaign_upkeep": "Upkeep: %+n%",
   "wh_main_effect_force_all_campaign_upkeep_nagash": "Upkeep: %+n%",
+  "wh_main_effect_force_stat_armour": "Armour: %+n",
   "wh_main_effect_force_stat_speed": "Speed: %+n%",
   "wh_main_effect_force_stat_vigour_loss_reduction": "Vigour loss reduction: %+n%",
   "wh2_dlc09_effect_force_stat_ap_damage_carrion_wolves_fellbats": "Armour-piercing weapon damage: %+n",
@@ -23138,6 +23496,8 @@
   "wh2_dlc09_effect_force_stat_missile_damage_tmb_skull_catapult_casket": "Missile strength: %+n%",
   "wh2_dlc11_cst_recruit_rank_gunnery_mobs": "Local Recruitment rank: %+n",
   "wh2_dlc11_effect_force_stat_missile_damage_deck_droppers": "Missile strength: %+n%",
+  "wh2_dlc14_effect_character_stat_enable_spirit_leech_attacks": "Attacks cause \"Spirit Leech\" effect, draining hit points",
+  "wh2_dlc17_effect_ability_enable_wayfarer": "Passive ability: \"Wayfarer\"",
   "wh2_dlc29_effect_attribute_enable_vanguard_deployment_deck_droppers": "Attribute: Vanguard Deployment",
   "wh2_dlc29_effect_force_stat_melee_defence_casket_of_souls": "Melee defence: %+n",
   "wh2_dlc29_effect_force_stat_missile_resistance_deck_droppers": "Missile resistance: %n%",
@@ -23145,8 +23505,11 @@
   "wh2_dlc29_effect_force_stat_weapon_strength_nag_legendary_heroes": "Weapon strength: %+n% for Legendary Heroes",
   "wh2_dlc29_effect_unit_recruit_cost_screaming_skull_catapult": "Local Recruitment cost: %+n%",
   "wh2_dlc29_effect_unit_xp_levels_screaming_skull_catapult": "Local Recruitment rank: %+n",
+  "wh3_dlc20_effect_healing_cap_modifier": "Battle healing cap: %+n%",
+  "wh3_dlc24_effect_attribute_enable_360_missile_block": "Attribute: 360 Missile Block",
   "wh3_dlc25_contact_phase_armour_sundering_krell": "Enables Sundering attacks",
   "wh3_dlc25_effect_enable_disrupted_attacks_legendary_heroes": "Enables Disrupted! attacks for Legendary Heroes",
+  "wh3_dlc26_effect_attribute_enable_immune_to_flanking": "Attribute: Immune to Flanking",
   "wh3_dlc26_effect_force_stat_barrier_magical_vehicles": "Barrier hit points: %+n",
   "wh3_dlc26_effect_force_stat_barrier_nag_mortis": "Barrier hit points: %+n",
   "wh3_dlc29_ability_enable_frenzy_flying_undead_monsters": "Passive ability: \"Frenzy\"",
@@ -23154,12 +23517,15 @@
   "wh3_dlc29_attribute_enable_stalk_nag_ethereal": "Attribute: Stalk",
   "wh3_dlc29_attribute_enable_vanguard_nag_ethereal": "Attribute: Vanguard Deployment",
   "wh3_dlc29_attribute_enable_vanguard_nag_nehekhara": "Attribute: Vanguard Deployment",
+  "wh3_dlc29_effect_ability_cooldown_doom_lord": "Cooldown: %+n% to \"Doom Lord\"",
   "wh3_dlc29_effect_ability_cooldown_raise_dead_dieter": "Cooldown: %+n% to \"Raise Dead\"",
   "wh3_dlc29_effect_ability_disable_wounds_legendary_lord": "Removes Attribute \"Wounds\" for all Legendary Lords",
   "wh3_dlc29_effect_ability_duration_doom_lord": "Effect duration: %+n% for \"Doom Lord\"",
   "wh3_dlc29_effect_ability_enable_abandon_ship_upgraded": "Ability: \"Abandon Ship! Upgraded\"",
   "wh3_dlc29_effect_ability_enable_black_nimbus_upgraded": "Ability \"Black Nimbus Upgraded\"",
+  "wh3_dlc29_effect_ability_enable_bound_abyssal_swarm": "Bound spell: \"The Abyssal Swarm\"",
   "wh3_dlc29_effect_ability_enable_bound_fog_of_the_damned_nag_mourngul_haunters": "Bound spell: \"Fog of the Damned\" for Mourngul Haunters and Banshees",
+  "wh3_dlc29_effect_ability_enable_bound_hand_of_dust": "Bound spell: \"The Hand of Dust\"",
   "wh3_dlc29_effect_ability_enable_dig_in_gunnery_mob": "Passive ability: \"Dig In!\"",
   "wh3_dlc29_effect_ability_enable_extra_reload_nag_guns": "Passive ability: \"Extra Reload\"",
   "wh3_dlc29_effect_ability_enable_frenzy_wight_kings": "Passive ability: \"Frenzy\" for Wight Kings",
@@ -23173,24 +23539,38 @@
   "wh3_dlc29_effect_ability_enable_perfect_vigour_nag_constructs_ushabti_stalkers_rank7": "Attribute: Perfect Vigour (Rank 7 and above)",
   "wh3_dlc29_effect_ability_enable_regeneration_banshees": "Passive ability: \"Regeneration\" for Banshee Heroes",
   "wh3_dlc29_effect_ability_enable_regeneration_construct_monsters_rank7": "Passive ability: \"Regeneration\" (Rank 7 and above)",
+  "wh3_dlc29_effect_ability_enable_summon_archai": "Ability: \"Summon Archai\"",
   "wh3_dlc29_effect_ability_enable_summon_morghast_archai_dieter": "Ability: \"The Heralds' Arrival\"",
   "wh3_dlc29_effect_ability_enable_the_restless_dead_nagash": "Passive ability: \"The Restless Dead\"",
   "wh3_dlc29_effect_ability_enable_undeathly_will_guards_rank7": "Passive ability: \"Undeathly Will\" (Rank 7 and above)",
   "wh3_dlc29_effect_ability_enable_vigour_mortis_upgraded": "Ability: \"Vigour Mortis Upgraded\"",
   "wh3_dlc29_effect_ability_enable_wrath_of_ptra": "Ability: \"Wrath of Ptra\"",
   "wh3_dlc29_effect_ability_range_befalling_curse": "Effect range: %+n% for \"Befalling Curse\"",
+  "wh3_dlc29_effect_ability_range_the_curse": "Effect range: %+n% for \"The Curse\"",
+  "wh3_dlc29_effect_ability_recharge_liber_mortis": "Cooldown: %+n% to \"Liber Mortis\"",
   "wh3_dlc29_effect_ability_regeneration_legendary_lord": "Passive ability: \"Regeneration\" for all Legendary Lords",
   "wh3_dlc29_effect_ability_uses_death_shriek_terrorgheist": "Ability number of uses: %+n",
   "wh3_dlc29_effect_ability_uses_flesh_eating_scarabs_khemric_titan": "Ability number of uses: %+n",
   "wh3_dlc29_effect_ability_uses_gaze_of_dust_khemric_titan": "Ability number of uses: %+n",
   "wh3_dlc29_effect_ability_uses_liber_mortis": "Ability number of uses: %+n for \"Liber Mortis\"",
+  "wh3_dlc29_effect_ability_uses_nag_books_of_nagash_all": "All Books of Nagash Ability number of uses: %+n",
+  "wh3_dlc29_effect_ability_uses_nag_death_passive_doom_and_darkness": "Books of Nagash Ability number of uses: %+n for \"Doom & Darkness\"",
+  "wh3_dlc29_effect_ability_uses_nag_death_passive_spirit_leech": "Books of Nagash Ability number of uses: %+n for \"Spirit Leech\"",
+  "wh3_dlc29_effect_ability_uses_nag_light_passive_light_of_battle": "Books of Nagash Ability number of uses: %+n for \"Light of Battle\"",
+  "wh3_dlc29_effect_ability_uses_nag_light_passive_shems_burning_gaze": "Books of Nagash Ability number of uses: %+n for \"Shem's Burning Gaze\"",
+  "wh3_dlc29_effect_ability_uses_nag_nehekhara_passive_protection": "Books of Nagash Ability number of uses: %+n for \"Neru's Incantation of Protection\"",
+  "wh3_dlc29_effect_ability_uses_nag_nehekhara_passive_vengeance": "Books of Nagash Ability number of uses: %+n for \"Usirian's Incantation of Vengeance\"",
+  "wh3_dlc29_effect_ability_uses_nag_vampire_passive_curse_of_years": "Books of Nagash Ability number of uses: %+n for \"Curse of Years\"",
+  "wh3_dlc29_effect_ability_uses_nag_vampire_passive_gaze_of_nagash": "Books of Nagash Ability number of uses: %+n for \"Gaze of Nagash\"",
   "wh3_dlc29_effect_ability_uses_okkams_mindrazor_lahmian": "Ability number of uses: %+n for \"Okkam's Mindrazor\" for Lahmian Handmaidens (Shadow)",
   "wh3_dlc29_effect_ability_uses_soulblight_lahmian": "Ability number of uses: %+n for \"Soulblight\" for Lahmian Handmaidens (Death)",
   "wh3_dlc29_effect_ability_uses_spirit_leech_hierotitan": "Ability number of uses: %+n",
+  "wh3_dlc29_effect_ability_uses_summon_morghast_archai": "Ability number of uses: %+n for \"Summon Archai\"",
   "wh3_dlc29_effect_armour_cost_nag_monstrous_infantry": "Armour: %+n",
   "wh3_dlc29_effect_attribute_360_block_sword_shield": "Attribute: 360 Missile Block",
   "wh3_dlc29_effect_attribute_contact_immune_spears_polearms": "Attribute: Immune to Contact Effects",
   "wh3_dlc29_effect_attribute_enable_360_missile_block_rotting_leviathan": "Attribute: 360 Missile Block",
+  "wh3_dlc29_effect_attribute_enable_ballistic_plating": "Attribute: Ballistic Plating",
   "wh3_dlc29_effect_attribute_enable_causes_terror_knights": "Attribute: Causes Terror",
   "wh3_dlc29_effect_attribute_enable_devastating_flanker_nag_knights_lance_rank7": "Attribute: Devastating Flanker (Rank 7 and above)",
   "wh3_dlc29_effect_attribute_enable_encourage_blood_knights": "Attribute: Encourage",
@@ -23226,6 +23606,7 @@
   "wh3_dlc29_effect_dead_rise_again_chance_hit_points_necrofex": "The Dead Rise Again: %+n% chance and hit points restored after battle",
   "wh3_dlc29_effect_dead_rise_again_chance_nag_constructs": "The Dead Rise Again: %+n% chance and hit points restored after battle",
   "wh3_dlc29_effect_dead_rise_again_chance_nag_monstrous_infantry": "The Dead Rise Again: %+n% chance restored after battle",
+  "wh3_dlc29_effect_enable_arkhan_transported_army_dummy": "Arkhan the Black gains Infernal Legion units within his army each time the Ritual of Undeath is cast",
   "wh3_dlc29_effect_enable_bound_spell_raise_dead": "Bound Spell: \"Lesser Awakening from the Grave\" for Master Necromancers",
   "wh3_dlc29_effect_enable_poison_nag_archers": "Enables poison attacks",
   "wh3_dlc29_effect_flaming_attacks_khemrian_warsphinx": "Enables flaming attacks",
@@ -23236,6 +23617,7 @@
   "wh3_dlc29_effect_force_campaign_replenishment_rate_construct_monsters": "Casualty replenishment rate: %+n%",
   "wh3_dlc29_effect_force_contact_effect_charmed_attacks_vampires": "Enables Charmed! attacks (reduced melee attack)",
   "wh3_dlc29_effect_force_dead_rise_again_chance_nag_guards": "The Dead Rise Again: %+n% chance to be restored after battle",
+  "wh3_dlc29_effect_force_nag_shambling_horde_dummy": "Spawn a temporary Shambling Horde army at selected region whenever the Ritual of Undeath is cast",
   "wh3_dlc29_effect_force_recruit_cost_nag_archer_tmb_bow": "Local Recruitment cost: %+n%",
   "wh3_dlc29_effect_force_recruit_rank_all_including_merc": "Recruit rank: %+n",
   "wh3_dlc29_effect_force_recruitment_cost_tmb_chariots": "Local Recruitment cost: %+n%",
@@ -23453,6 +23835,8 @@
   "wh3_dlc29_effect_leadership_nag_undead_monster_monstrous": "Leadership: %+n",
   "wh3_dlc29_effect_leadership_nag_undead_monsters": "Leadership: %+n",
   "wh3_dlc29_effect_lesser_noxious_disintegration_monstrous_infantry": "Passive ability: \"Lesser Noxious Disintegration\"",
+  "wh3_dlc29_effect_magic_undeath_reduce_wom_cost_all_overcast": "Winds of Magic cost: %+n% for overcast spells from the Lore of Undeath",
+  "wh3_dlc29_effect_magic_undeath_reduce_wom_cost_nag_nagash": "Winds of Magic cost: %+n% for Lore of Undeath",
   "wh3_dlc29_effect_melee_attack_nag_undead_monster_monstrous": "Melee attack: %+n",
   "wh3_dlc29_effect_melee_defence_cost_nag_undead_monster_monstrous": "Melee defence: %+n",
   "wh3_dlc29_effect_physical_resist_nag_undead_monster_monstrous": "Physical Resistance: %+n%",
@@ -23480,6 +23864,7 @@
   "wh3_dlc29_effect_replenishment_nag_guards": "Casualty replenishment rate: %+n%",
   "wh3_dlc29_effect_spell_mastery_mannfred": "Spell intensity: %+n%",
   "wh3_dlc29_effect_spell_resistance_vmp_carts_mortis_coach_coven_thrones": "Spell Resistance: %+n%",
+  "wh3_dlc29_effect_stat_incoming_healing_mod_debuff": "Incoming Healing Modifier: %+n%",
   "wh3_dlc29_effect_stat_mass_nag_melee_zombies": "Unit mass: %+n%",
   "wh3_dlc29_effect_tech_unit_xp_levels_nag_knights": "Local Recruitment rank: %+n",
   "wh3_dlc29_effect_tech_upkeep_reduction_skeleton_nehekharan_warriors": "Upkeep: %+n%",
@@ -23505,6 +23890,12 @@
   "wh3_dlc298_effect_force_stat_vigour_loss_reduction_crypt_ghoul_bloated_animated_hulks": "Vigour loss reduction: %+n%",
   "wh3_main_effect_ability_cst_enable_undeath_from_above": "Ability: \"Undeath from Above\"",
   "wh3_main_effect_ability_num_uses_pestilential_breath": "Ability number of uses: %+n",
-  "wh3_main_effect_force_stat_explosive_damage_tmb_artillery": "Explosive missile damage: %+n%"
+  "wh3_main_effect_attribute_enable_devestating_flanker": "Attribute: Devastating Flanker",
+  "wh3_main_effect_attribute_unyielding_assault": "Attribute: Unyielding Assault",
+  "wh3_main_effect_battle_barrier_health_add": "Barrier hit points: %+n",
+  "wh3_main_effect_character_stat_unit_mass_percentage_mod": "Unit mass: %+n%",
+  "wh3_main_effect_force_all_campaign_movement_range_post_battle_win": "Replenishes %n% campaign movement range after winning a battle",
+  "wh3_main_effect_force_stat_explosive_damage_tmb_artillery": "Explosive missile damage: %+n%",
+  "wh3_main_effect_spell_mastery": "Spell intensity: %+n%"
  }
 }

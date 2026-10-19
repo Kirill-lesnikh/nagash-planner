@@ -261,13 +261,17 @@ const NAMED_CHARACTER = {
   vlad: /_cha_vlad_von_carstein/,
   neferata: /_cha_neferata/,
 };
+// The character a scope names ("(Nagash)", "(Arkhan the Black)", …), as a unit key pattern; null for broader scopes.
+function namedCharacter(scopeKey) {
+  if (scopeRows[scopeKey]?.target === "character_if_faction_leader") return /_cha_nagash$/;
+  return NAMED_CHARACTER[/^faction_to_character_([a-z]+)/.exec(scopeKey)?.[1]] ?? null;
+}
 function narrowByScope(units, scopeKey) {
   const s = scopeRows[scopeKey];
   if (!s) return units;
   const caste = (u) => mainUnits.get(u).caste;
-  if (s.target === "character_if_faction_leader") return units.filter((u) => /_cha_nagash$/.test(u));
-  const named = /^faction_to_character_([a-z]+)/.exec(scopeKey)?.[1];
-  if (NAMED_CHARACTER[named]) return units.filter((u) => NAMED_CHARACTER[named].test(u));
+  const named = namedCharacter(scopeKey);
+  if (named) return units.filter((u) => named.test(u));
   if (scopeKey.includes("heroes_only")) return units.filter((u) => caste(u) === "hero");
   if (s.target === "character_when_commanding") return units.filter((u) => caste(u) === "lord");
   if (s.target === "character") return units.filter((u) => caste(u) === "lord" || caste(u) === "hero");
@@ -282,7 +286,10 @@ for (const node of nodes) {
   for (const e of node.effects) {
     const scopeKey = e._scope;
     delete e._scope;
-    const all = [...(effectUnits.get(e.key) ?? [])].sort();
+    // Effects with no unit set link (character stats, attributes, abilities via basic/attribute junctions) reach
+    // whoever the scope picks. Only a scope naming one character says who that is.
+    const linked = [...(effectUnits.get(e.key) ?? [])].sort();
+    const all = linked.length || !namedCharacter(scopeKey) ? linked : [...mainUnits.keys()].sort();
     const units = narrowByScope(all, scopeKey);
     if (!units.length || !effectTemplates[e.key]) continue;
     const id = units.length === all.length ? e.key : `${e.key}@${scopeKey}`;

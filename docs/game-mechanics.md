@@ -122,6 +122,10 @@ All of these come from game data or in-game text. **[G]**
   node's effect row then narrows it. The generic character stat effects (`wh_main_effect_character_stat_*`) use a unit
   set of *every* unit. Only the scope ("(Nagash)", "(Krell)", "(all Heroes)", "(all Lords)", "(all characters)")
   says who really gets them. The same effect key appears with several different scopes across nodes.
+- **Some character effects have no unit set at all.** Stats like missile block chance go through
+  `effect_bonus_value_basic_junction` and attributes (360 Missile Block, Ballistic Plating, Immune to Flanking, …)
+  through `effect_bonus_value_unit_attribute_junctions`; neither table has a unit column. The scope is the only thing
+  that says who gets them, e.g. *The Indestructible Form* "(Nagash)".
 - **Army-level conditions.** Some unit bonuses only apply in certain armies:
   - "Nagash's army": scope target `force_if_commanded_by_faction_leader`. For example Upkeep −10% / −15%, Recruit rank +1 and
     The Dead Rise Again, all reaching every unit.

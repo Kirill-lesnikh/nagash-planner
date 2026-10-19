@@ -66,6 +66,10 @@ Rejected along the way, in order:
 
 - A second search tab: search a unit, pick it, and **highlight all Sigils whose bonuses may apply to it**. The list shows
   those bonuses worded for the unit; unit-specific Sigils come first, then "Bonuses for every unit".
+- 2026-10-19: the user reported *The Indestructible Form* wasn't highlighted for Nagash. Effects scoped to one named
+  character now target that character even without a unit set (see data-model.md). **"Pathways to Eternity" connectors
+  are left out of the Units tab**, as in search; they'd otherwise add 101 identical rows to Nagash's list. They still
+  count in the By-unit combined bonuses.
 
 ## Layout
 

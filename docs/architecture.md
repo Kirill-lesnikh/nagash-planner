@@ -82,7 +82,7 @@ nagash_calc/
   All terms must match within **one field**: the node name, or a single effect line with its scope. Terms can come in
   any order. Connectors are excluded. Results are ranked: word start +20, whole word +10.
 - **Unit lookup** (`units.ts`): Sigils with any effect whose target contains the unit; unit-specific Sigils first, then
-  "Bonuses for every unit".
+  "Bonuses for every unit". Connectors are excluded (all 101 give Nagash the same bonuses).
 
 ## Rendering notes
 

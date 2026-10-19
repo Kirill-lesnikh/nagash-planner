@@ -25,6 +25,8 @@ export function unitBonuses(index: TreeIndex, unitKey: string): UnitBonusNode[] 
   const { effectTargets, unitEffectTemplates } = index.data;
   const result: UnitBonusNode[] = [];
   for (const node of index.nodes) {
+    // "Pathways to Eternity" connectors are all alike and would flood Nagash's list (as in search).
+    if (node.tier === "connector") continue;
     const lines: UnitBonusLine[] = [];
     for (const e of node.effects) {
       const targets = e.target ? effectTargets[e.target] : undefined;

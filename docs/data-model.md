@@ -98,6 +98,14 @@ different scopes. `build-tree.mjs` (`narrowByScope`) applies:
 | other target `character` (all characters) | castes `lord` + `hero` |
 | force / army / region scopes | unchanged |
 
+**No unit set at all:** many character effects aren't linked to any unit set or unit. They reach the character through
+`effect_bonus_value_basic_junction_tables` (stats such as `wh_main_effect_character_stat_missile_block`) or
+`effect_bonus_value_unit_attribute_junctions_tables` (attributes such as 360 Missile Block, Ballistic Plating), which
+have no unit column. The scope alone says who gets them. When the scope names **one character** (`namedCharacter`: the
+first two rows of the table above), `build-tree` starts from every roster unit and narrows by scope. Broader character
+scopes ("(all Lords)", "(all characters)") stay untargeted, since they'd tag every lord or hero with e.g. a lore's spell
+cooldowns. Example: *The Indestructible Form* (scope "(Nagash)").
+
 Because of this, targets are stored **per effect and scope**. The key is the effect key, or `effect@scopeKey` when the
 scope narrows the set. Each node effect carries `target` pointing at its key.
 
